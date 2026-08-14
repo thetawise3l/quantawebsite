@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" referrerpolicy="no-referrer">
+<style>
+  html, body { margin: 0; padding: 0; background: #f4f4f1; }
+  * { box-sizing: border-box; }
+  a { color: #0a0a0a; text-decoration: none; }
+  a:hover { color: var(--qa, #e8702a); }
+  ::selection { background: #e8702a; color: #fff; }
+  @keyframes fx-rise { from { transform: translateY(105%); } to { transform: translateY(0); } }
+  @keyframes fx-fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes fx-vline { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  @keyframes fx-hline { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes fx-march { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes filmDrift {
+    0%   { transform: scale(1.05) translate3d(0, 0, 0); }
+    50%  { transform: scale(1.15) translate3d(-1.8%, -1.2%, 0); }
+    100% { transform: scale(1.05) translate3d(0, 0, 0); }
+  }
+</style>
+<script src="assets/image-slot.js"></script>
+</helmet>
+
+<div style="position: relative; width: 100%; background: #f4f4f1; color: #0a0a0a; font-family: 'PP Neue Montreal', 'Archivo', sans-serif; overflow-x: clip;">
+
+
+
+  <nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: #f4f4f1; border-bottom: 1px solid rgba(10,10,10,0.16);">
+    <div style="display: grid; grid-template-columns: repeat(12, 1fr); align-items: center; height: 52px; padding: 0 2vw; gap: 0;">
+      <a href="Lithos%20Hero.dc.html" style="grid-column: span 3; display: flex; align-items: center; gap: 10px; color: #0a0a0a; text-decoration: none;">
+        <svg width="16" height="16" viewBox="0 0 256 256" fill="#0a0a0a"><path d="M 256 256 L 128 256 L 0 128 L 128 128 Z M 256 128 L 128 128 L 0 0 L 128 0 Z"></path></svg>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;">Quanta</span>
+      </a>
+      <div style="grid-column: span 6; display: flex; justify-content: center; gap: 28px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;">
+        <a href="Benefits.dc.html" style="color: #0a0a0a; text-decoration: none;">Benefits</a>
+        <a href="Features%203.dc.html" style="color: #e8702a; text-decoration: none;">Features</a>
+      </div>
+      <div style="grid-column: span 3; display: flex; justify-content: flex-end; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;">
+        <a href="Contact.dc.html" style="display: inline-flex; align-items: center; white-space: nowrap; border: 1px solid rgba(10,10,10,0.3); padding: 7px 14px; color: #0a0a0a; text-decoration: none;" style-hover="background: #0a0a0a; color: #f4f4f1;">Start My Strategy</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="qx-wipe" aria-hidden="true" style="position: fixed; inset: 0; z-index: 90; pointer-events: none; background: #0a0a0a; clip-path: inset(var(--qx-t, 100%) 0% var(--qx-b, 0%) 0%); will-change: clip-path; display: flex; flex-direction: column; justify-content: center; gap: 28px; padding: 0 2vw;">
+    <h2 style="margin: 0; color: #f4f4f1; font-weight: 800; text-transform: uppercase; letter-spacing: -0.05em; line-height: 0.84; font-size: clamp(2.4rem, 8.4vw, 8.4rem); transform: translateY(var(--qx-y, 26%)); will-change: transform;">Five things<br>it never<br>stops doing</h2>
+  </div>
+
+  <section ref="{{ wipeRef }}" data-screen-label="Always on" style="position: relative; z-index: 10; height: 300vh; background: transparent; border-top: 1px solid rgba(10,10,10,0.16);">
+    <div style="position: sticky; top: 52px; height: calc(100vh - 52px); overflow: hidden; display: flex; align-items: center; justify-content: center;">
+      <h2 ref="{{ wipeWordRef }}" style="position: absolute; margin: 0; z-index: 1; font-weight: 800; text-transform: uppercase; font-size: clamp(3rem, 13vw, 14rem); line-height: 0.82; letter-spacing: -0.055em; white-space: nowrap; color: #0a0a0a;">Always on</h2>
+      <div ref="{{ wipeImgRef }}" style="position: relative; z-index: 2; width: 24vw; height: 58vh; overflow: hidden; background: #0a0a0a; clip-path: inset(46% 0% 46% 0%); will-change: clip-path, width, height;">
+        <img ref="{{ filmRef }}" src="assets/machine2/f000.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; background: #0a0a0a;">
+      </div>
+    </div>
+  </section>
+
+  <section ref="{{ manifRef }}" data-screen-label="Why" style="position: relative; z-index: 10; height: 200vh; background: #f4f4f1;">
+    <div style="position: sticky; top: 52px; height: calc(100vh - 52px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 34px; padding: 0 2vw; text-align: center; overflow: hidden;">
+      <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; overflow: hidden; background: #f4f4f1; perspective: 1500px; perspective-origin: 50% 44%;">
+        <div ref="{{ whyPlaneRef }}" style="position: absolute; left: 50%; top: 50%; width: 128%; height: 128%; transform: translate(-50%, -50%); transform-origin: 50% 50%; transform-style: preserve-3d; will-change: transform, opacity; -webkit-mask-image: radial-gradient(closest-side ellipse at 50% 50%, #000 62%, rgba(0,0,0,0.62) 84%, transparent 100%); mask-image: radial-gradient(closest-side ellipse at 50% 50%, #000 62%, rgba(0,0,0,0.62) 84%, transparent 100%);">
+          <img ref="{{ whyF0Ref }}" src="assets/why2/w00.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1;">
+          <img ref="{{ whyF1Ref }}" src="assets/why2/w01.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0;">
+        </div>
+        <div ref="{{ whyVeilRef }}" style="position: absolute; inset: 0; background: radial-gradient(58% 42% at 50% 46%, rgba(244,244,241,0.82) 0%, rgba(244,244,241,0.34) 58%, rgba(244,244,241,0) 100%); opacity: 0.6;"></div>
+      </div>
+      <h2 style="position: relative; z-index: 1; margin: 0; max-width: 26ch; color: #0a0a0a; font-weight: 500; letter-spacing: -0.035em; line-height: 1.04; font-size: clamp(2rem, 5.4vw, 5.6rem); text-wrap: pretty; display: flex; flex-wrap: wrap; justify-content: center; gap: 0 0.28em;">
+        <span data-w="0" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">A</span>
+        <span data-w="1" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">gym</span>
+        <span data-w="2" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">is</span>
+        <span data-w="3" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">where</span>
+        <span data-w="4" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">people</span>
+        <span data-w="5" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">become</span>
+        <span data-w="6" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">who</span>
+        <span data-w="7" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">they</span>
+        <span data-w="8" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">meant</span>
+        <span data-w="9" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">to</span>
+        <span data-w="10" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">be.</span>
+        <span data-w="11" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">We</span>
+        <span data-w="12" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">built</span>
+        <span data-w="13" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">Quanta</span>
+        <span data-w="14" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">so</span>
+        <span data-w="15" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">nothing</span>
+        <span data-w="16" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">ever</span>
+        <span data-w="17" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">sends</span>
+        <span data-w="18" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">them</span>
+        <span data-w="19" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">home</span>
+        <span data-w="20" style="display: inline-block; opacity: 0.08; transform: translateY(14px); will-change: opacity, transform;">early.</span>
+      </h2>
+    </div>
+  </section>
+
+  <section ref="{{ idxRef }}" data-screen-label="Feature index" style="position: relative; z-index: 10; height: 900vh;">
+    <div style="position: sticky; top: 52px; height: calc(100vh - 52px); overflow: hidden; background: #0a0a0a;">
+
+      <div data-panel="0" style="position: absolute; inset: 0; background: #0a0a0a; color: #f4f4f1; will-change: transform, filter, border-radius; display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; padding: 0 2vw; align-items: center; overflow: hidden;">
+        <div aria-hidden="true" data-plane="num" style="grid-column: 1 / span 4; font-weight: 800; letter-spacing: -0.06em; line-height: 0.8; font-size: clamp(5rem, 13vw, 13rem); will-change: transform;">01</div>
+        <div data-plane="copy" style="grid-column: 6 / span 7; display: flex; flex-direction: column; gap: 18px; will-change: transform;">
+          <div style="overflow: hidden; padding-bottom: 0.06em;">
+            <h3 data-plane="head" style="margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: -0.045em; line-height: 0.86; font-size: clamp(2rem, 5.2vw, 5.2rem); will-change: transform;">Limitless Freedom</h3>
+          </div>
+          <p style="margin: 0; max-width: 44ch; font-size: clamp(0.95rem, 1.1vw, 1.15rem); line-height: 1.5; opacity: 0.74;">Forget paying every single visit. One membership gives members unlimited access to the supplements they already love. They simply walk up, choose their drink, and enjoy it instantly.</p>
+        </div>
+      </div>
+
+      <div data-panel="1" style="position: absolute; inset: 0; background: #f4f4f1; color: #0a0a0a; will-change: transform, filter, border-radius; display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; padding: 0 2vw; align-items: center; overflow: hidden;">
+        <div aria-hidden="true" data-plane="num" style="grid-column: 1 / span 4; font-weight: 800; letter-spacing: -0.06em; line-height: 0.8; font-size: clamp(5rem, 13vw, 13rem); will-change: transform;">02</div>
+        <div data-plane="copy" style="grid-column: 6 / span 7; display: flex; flex-direction: column; gap: 18px; will-change: transform;">
+          <div style="overflow: hidden; padding-bottom: 0.06em;">
+            <h3 data-plane="head" style="margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: -0.045em; line-height: 0.86; font-size: clamp(2rem, 5.2vw, 5.2rem); will-change: transform;">Endless Choices</h3>
+          </div>
+          <p style="margin: 0; max-width: 44ch; font-size: clamp(0.95rem, 1.1vw, 1.15rem); line-height: 1.5; opacity: 0.74;">Every member has different goals. From protein and creatine to recovery blends and smoothies, Quanta gives them the freedom to choose exactly what they want.</p>
+        </div>
+      </div>
+
+      <div data-panel="2" style="position: absolute; inset: 0; background: #0a0a0a; color: #f4f4f1; will-change: transform, filter, border-radius; display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; padding: 0 2vw; align-items: center; overflow: hidden;">
+        <div aria-hidden="true" data-plane="num" style="grid-column: 1 / span 4; font-weight: 800; letter-spacing: -0.06em; line-height: 0.8; font-size: clamp(5rem, 13vw, 13rem); will-change: transform;">03</div>
+        <div data-plane="copy" style="grid-column: 6 / span 7; display: flex; flex-direction: column; gap: 18px; will-change: transform;">
+          <div style="overflow: hidden; padding-bottom: 0.06em;">
+            <h3 data-plane="head" style="margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: -0.045em; line-height: 0.86; font-size: clamp(2rem, 5.2vw, 5.2rem); will-change: transform;">Always Full</h3>
+          </div>
+          <p style="margin: 0; max-width: 44ch; font-size: clamp(0.95rem, 1.1vw, 1.15rem); line-height: 1.5; opacity: 0.74;">No empty machines. No “out of stock” moments. We handle every refill, restock, and maintenance, so your members always have access to their favorite supplements.</p>
+        </div>
+      </div>
+
+      <div data-panel="3" style="position: absolute; inset: 0; background: #f4f4f1; color: #0a0a0a; will-change: transform, filter, border-radius; display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; padding: 0 2vw; align-items: center; overflow: hidden;">
+        <div aria-hidden="true" data-plane="num" style="grid-column: 1 / span 4; font-weight: 800; letter-spacing: -0.06em; line-height: 0.8; font-size: clamp(5rem, 13vw, 13rem); will-change: transform;">04</div>
+        <div data-plane="copy" style="grid-column: 6 / span 7; display: flex; flex-direction: column; gap: 18px; will-change: transform;">
+          <div style="overflow: hidden; padding-bottom: 0.06em;">
+            <h3 data-plane="head" style="margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: -0.045em; line-height: 0.86; font-size: clamp(2rem, 5.2vw, 5.2rem); will-change: transform;">Future Powered</h3>
+          </div>
+          <p style="margin: 0; max-width: 44ch; font-size: clamp(0.95rem, 1.1vw, 1.15rem); line-height: 1.5; opacity: 0.74;">Quanta automatically prepares fresh drinks, monitors inventory, and keeps itself running around the clock. While it serves your members, you focus on growing your gym.</p>
+        </div>
+      </div>
+
+      <div data-panel="4" style="position: absolute; inset: 0; background: #0a0a0a; color: #f4f4f1; will-change: transform, filter, border-radius; display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; padding: 0 2vw; align-items: center; overflow: hidden;">
+        <div aria-hidden="true" data-plane="num" style="grid-column: 1 / span 4; font-weight: 800; letter-spacing: -0.06em; line-height: 0.8; font-size: clamp(5rem, 13vw, 13rem); will-change: transform;">05</div>
+        <div data-plane="copy" style="grid-column: 6 / span 7; display: flex; flex-direction: column; gap: 18px; will-change: transform;">
+          <div style="overflow: hidden; padding-bottom: 0.06em;">
+            <h3 data-plane="head" style="margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: -0.045em; line-height: 0.86; font-size: clamp(2rem, 5.2vw, 5.2rem); will-change: transform;">Signature Design</h3>
+          </div>
+          <p style="margin: 0; max-width: 44ch; font-size: clamp(0.95rem, 1.1vw, 1.15rem); line-height: 1.5; opacity: 0.74;">Your gym has its own identity, and your Quanta machine should too. Customize the colors, branding, logo, and display to create a machine that feels uniquely yours.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section ref="{{ progrRef }}" data-screen-label="Our goals" style="position: relative; z-index: 10; background: #0a0a0a; color: #f4f4f1; padding: 24vh 2vw 18vh 2vw; min-height: 330vh;">
+    <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; pointer-events: none;">
+      <div style="position: sticky; top: 0; height: 100vh; overflow: hidden;">
+        <img data-pour="" ref="{{ pourRef }}" src="assets/pour/p000.jpg" alt="" style="position: absolute; left: 50%; top: 50%; width: 108%; height: 108%; transform: translate3d(-50%, -50%, 0); object-fit: cover; object-position: 50% 34%; opacity: 0; will-change: opacity;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.74) 0%, rgba(10,10,10,0.6) 28%, rgba(10,10,10,0.62) 64%, rgba(10,10,10,0.86) 100%);"></div>
+      </div>
+    </div>
+    <div style="position: relative; z-index: 1; display: flex; flex-direction: column; gap: 22vh;">
+      <h2 style="margin: 0; max-width: 24ch; font-weight: 800; text-transform: uppercase; letter-spacing: -0.05em; line-height: 0.84; font-size: clamp(2.4rem, 8vw, 8rem);">Our goals</h2>
+      <div style="display: flex; flex-direction: column; gap: 44vh;">
+        <article data-goalrow="0" style="position: relative; display: grid; grid-template-columns: repeat(12, 1fr); gap: 3vw; align-items: start; padding-top: 28px;">
+          <div data-grule="" style="position: absolute; left: 0; top: 0; height: 1px; width: 100%; background: rgba(244,244,241,0.34); transform: scaleX(0); transform-origin: 0 50%; will-change: transform;"></div>
+          <div style="grid-column: 1 / span 10; overflow: hidden;">
+            <p data-gtitle="" style="margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: -0.035em; line-height: 1.0; text-wrap: pretty; font-size: clamp(1.4rem, 2.9vw, 3rem); color: #f4f4f1; will-change: transform;">A place members never want to leave. Everything they need lives inside your walls, so the community stays together, workout after workout.</p>
+          </div>
+        </article>
+        <article data-goalrow="1" style="position: relative; display: grid; grid-template-columns: repeat(12, 1fr); gap: 3vw; align-items: start; padding-top: 28px;">
+          <div data-grule="" style="position: absolute; left: 0; top: 0; height: 1px; width: 100%; background: rgba(244,244,241,0.34); transform: scaleX(0); transform-origin: 0 50%; will-change: transform;"></div>
+          <div style="grid-column: 1 / span 10; overflow: hidden;">
+            <p data-gtitle="" style="margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: -0.035em; line-height: 1.0; text-wrap: pretty; font-size: clamp(1.4rem, 2.9vw, 3rem); color: #f4f4f1; will-change: transform;">TAP, POUR, GO. SUPPLEMENTS AT A PRICE THAT DOES NOT MAKE SENSE, IN THE SECONDS BTWEEN SETS, OR AFTER, BEFORE. WHENEVER.</p>
+          </div>
+        </article>
+        <article data-goalrow="2" style="position: relative; display: grid; grid-template-columns: repeat(12, 1fr); gap: 3vw; align-items: start; padding-top: 28px;">
+          <div data-grule="" style="position: absolute; left: 0; top: 0; height: 1px; width: 100%; background: rgba(244,244,241,0.34); transform: scaleX(0); transform-origin: 0 50%; will-change: transform;"></div>
+          <div style="grid-column: 1 / span 10; overflow: hidden;">
+            <p data-gtitle="" style="margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: -0.035em; line-height: 1.0; text-wrap: pretty; font-size: clamp(1.4rem, 2.9vw, 3rem); color: #f4f4f1; will-change: transform;">Strength, recovery, energy. Whatever a member is chasing, the right blend is always stocked and always within reach.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Close" style="position: relative; z-index: 10; padding: 110px 2vw 56px 2vw;">
+    <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; align-items: end;">
+      <h2 data-rv="up" style="grid-column: 1 / span 8; opacity: 0; transform: translateY(40px); margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: -0.05em; line-height: 0.84; font-size: clamp(2.4rem, 7.4vw, 8rem);">Put one on<br>your floor</h2>
+      <div data-rv="up" style="grid-column: 9 / span 4; opacity: 0; transform: translateY(40px); display: flex; flex-direction: column; gap: 20px;">
+        <p style="margin: 0; font-size: clamp(0.95rem, 1.05vw, 1.1rem); line-height: 1.5; color: rgba(10,10,10,0.72); max-width: 34ch;">We survey the space, agree the lines, install and take it from there. Your only job is opening the door.</p>
+        <a href="Contact.dc.html" ref="{{ ctaRef }}" style="display: inline-flex; align-items: center; justify-content: space-between; gap: 18px; background: #0a0a0a; color: #f4f4f1; padding: 18px 22px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;" style-hover="background: #e8702a; color: #0a0a0a;">
+          <span>Start my strategy</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: space-between; border-top: 1px solid rgba(10,10,10,0.16); margin-top: 72px; padding-top: 14px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(10,10,10,0.5);">
+      <span>Quanta — Features</span>
+      
+    </div>
+  </section>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#e8702a&quot;,&quot;options&quot;:[&quot;#e8702a&quot;,&quot;#0a0a0a&quot;,&quot;#1f4bff&quot;,&quot;#d8ff3e&quot;],&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.idxRef = React.createRef();
+    this.bigNumRef = React.createRef();
+    this.barRef = React.createRef();
+    this.ratioRef = React.createRef();
+    this.ctaRef = React.createRef();
+    this.heroRef = React.createRef();
+    this.progRef = React.createRef();
+    this.wipeRef = React.createRef();
+    this.wipeWordRef = React.createRef();
+    this.wipeImgRef = React.createRef();
+    this.wipePctRef = React.createRef();
+    this.wipeRuleRef = React.createRef();
+    this.loadRef = React.createRef();
+    this.loadTopRef = React.createRef();
+    this.loadBotRef = React.createRef();
+    this.loadNumRef = React.createRef();
+    this.hudIdxRef = React.createRef();
+    this.hudLabelRef = React.createRef();
+    this.hudPctRef = React.createRef();
+    this.markRef = React.createRef();
+    this.odoRef = React.createRef();
+    this.progrRef = React.createRef();
+    this.pourRef = React.createRef();
+    this.goalLabelRef = React.createRef();
+    this.progrPctRef = React.createRef();
+    this.railRef = React.createRef();
+    this.manifRef = React.createRef();
+    this.manifRuleRef = React.createRef();
+    this.filmRef = React.createRef();
+    this.whyPlaneRef = React.createRef();
+    this.whyF0Ref = React.createRef();
+    this.whyF1Ref = React.createRef();
+    this.whyVeilRef = React.createRef();
+    this.whyPctRef = React.createRef();
+    this._whyN = 40;
+    this._whyI = -1;
+    this._clips = [[2, 3], [6, 15], [42, 49]];
+    this._clip = 0;
+    this.state = {};
+    this._stats = false;
+  }
+
+  componentDidMount() {
+    this._applyProps();
+    try { this._reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { this._reduceMotion = false; }
+    this._whyImgs = [];
+    for (let i = 0; i < this._whyN; i++) {
+      const im = new Image();
+      im.src = this._whySrc(i);
+      this._whyImgs.push(im);
+    }
+    this._onMove = this._onMove.bind(this);
+    this._draw = this._draw.bind(this);
+    window.addEventListener('mousemove', this._onMove, { passive: true });
+    // this page may scroll a nested element, so listen in capture phase and poll
+    window.addEventListener('scroll', this._draw, { passive: true, capture: true });
+    document.addEventListener('scroll', this._draw, { passive: true, capture: true });
+    window.addEventListener('resize', this._draw, { passive: true });
+
+    this._poll = setInterval(this._draw, 120);
+    this._lastY = window.scrollY || 0;
+    this._pointer = { x: 0, y: 0 };
+    this._bootFilm();
+    this._bootPour();
+    setTimeout(() => {
+      const h = this.heroRef.current;
+      if (h) h.querySelectorAll('[data-hl]').forEach(el => { el.style.animation = 'none'; });
+      this._heroFree = true;
+    }, 2000);
+    const loop = () => { this._draw(); this._raf = requestAnimationFrame(loop); };
+    this._raf = requestAnimationFrame(loop);
+  }
+
+  componentDidUpdate() { this._applyProps(); }
+
+  _applyProps() {
+    const rs = document.documentElement.style;
+    rs.setProperty('--qa', this.props.accent || '#e8702a');
+  }
+
+  componentWillUnmount() {
+    this._dead = true;
+    window.removeEventListener('mousemove', this._onMove);
+    window.removeEventListener('scroll', this._draw, { capture: true });
+    document.removeEventListener('scroll', this._draw, { capture: true });
+    window.removeEventListener('resize', this._draw);
+    clearInterval(this._filmIv);
+    clearInterval(this._poll);
+    clearInterval(this._introIv);
+    clearTimeout(this._introT1);
+    clearTimeout(this._introT2);
+    if (this._raf) cancelAnimationFrame(this._raf);
+  }
+
+  _bootPour() {
+    this._pourN = 60;
+    this._pourImgs = [];
+    this._pourReady = 0;
+    for (let i = 0; i < this._pourN; i++) {
+      const im = new Image();
+      im.decoding = 'async';
+      im.onload = () => { this._pourReady++; };
+      im.src = 'assets/pour/p' + String(i).padStart(3, '0') + '.jpg';
+      this._pourImgs.push(im);
+    }
+    for (let i = 0; i < 26; i++) {
+      const im = new Image();
+      im.decoding = 'async';
+      im.src = 'assets/pour/l' + String(i).padStart(3, '0') + '.jpg';
+      this._pourImgs.push(im);
+    }
+    for (let i = 0; i < 36; i++) {
+      const im = new Image();
+      im.decoding = 'async';
+      im.src = 'assets/pour/c' + String(i).padStart(3, '0') + '.jpg';
+      this._pourImgs.push(im);
+    }
+    this._pourAt = '';
+  }
+
+  _drawPour(p, opacity) {
+    let el = this.pourRef.current;
+    if (!el && this.progrRef.current) el = this.progrRef.current.querySelector('[data-pour]');
+    if (!el) return;
+    el.style.opacity = opacity.toFixed(3);
+    if (opacity <= 0.002) return;
+    // three acts across the section: tubs tip -> the pour sustains -> shakers fill and one gets taken
+    const TIP = 30, LOOPN = 26, CUPN = 36, A = 0.18, B = 0.56;
+    const clampi = (x, n) => Math.max(0, Math.min(n - 1, Math.round(x)));
+    let src, op;
+    if (p <= A) {
+      const t = p / A;
+      src = 'assets/pour/p' + String(clampi(t * TIP, TIP + 1)).padStart(3, '0') + '.jpg';
+      op = (28 + t * 10).toFixed(1);
+    } else if (p <= B) {
+      const t = (p - A) / (B - A);
+      const q = t * 3.4;
+      const tri = q % 2 < 1 ? q % 1 : 1 - (q % 1);
+      src = 'assets/pour/l' + String(clampi(tri * (LOOPN - 1), LOOPN)).padStart(3, '0') + '.jpg';
+      op = (38 + t * 42).toFixed(1);
+    } else {
+      const t = (p - B) / (1 - B);
+      src = 'assets/pour/c' + String(clampi(t * (CUPN - 1), CUPN)).padStart(3, '0') + '.jpg';
+      op = (80 - t * 30).toFixed(1);
+    }
+    el.style.objectPosition = '50% ' + op + '%';
+    const w = el.parentElement;
+    if (w) { w.style.backgroundSize = 'cover'; w.style.backgroundPosition = '50% ' + op + '%'; }
+    if (src === this._pourAt) return;
+    el.src = src;
+    if (w) w.style.backgroundImage = 'url(' + src + ')';
+    this._pourAt = src;
+    return;
+  }
+
+  _bootFilm() {
+    this._frames = [];
+    for (let i = 0; i < 18; i++) {
+      const im = new Image();
+      im.decoding = 'async';
+      im.src = 'assets/machine2/f' + String(i).padStart(3, '0') + '.jpg';
+      this._frames.push(im);
+    }
+    this._frame = 0;
+    const el = this.filmRef.current;
+    if (el) el.src = this._frames[0].src;
+    this._filmIv = setInterval(() => {
+      const img = this.filmRef.current;
+      if (!img || this._frames.length < 2) return;
+      const r = this.wipeRef.current && this.wipeRef.current.getBoundingClientRect();
+      if (r && (r.bottom < 0 || r.top > window.innerHeight)) return;
+      this._frame = (this._frame + 1) % this._frames.length;
+      img.src = this._frames[this._frame].src;
+    }, 420);
+  }
+
+  _onMove(e) {
+    if (this._pointer) {
+      this._pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
+      this._pointer.y = -((e.clientY / window.innerHeight) * 2 - 1);
+    }
+
+  }
+
+  _prog(el, offset) {
+    if (!el) return null;
+    const r = el.getBoundingClientRect();
+    const vh = window.innerHeight - (offset || 0);
+    if (r.bottom < 0 || r.top > window.innerHeight) return null;
+    return Math.max(0, Math.min(1, -r.top / Math.max(1, r.height - vh)));
+  }
+
+  _draw() {
+    if (!this._frames) this._bootFilm();
+    const ease = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+    const vh = window.innerHeight;
+    const c01 = v => Math.max(0, Math.min(1, v));
+
+    // scroll velocity, used for the elastic skew on the plate track
+    const y = window.scrollY || document.documentElement.scrollTop || 0;
+    const vel = Math.max(-70, Math.min(70, y - (this._lastY || 0)));
+    this._lastY = y;
+    this._vel = (this._vel || 0) * 0.82 + vel * 0.18;
+    this._scrollSpin = this._vel;
+
+    // chapter curtain: clip-path wipe riding the seam between the statement and the index
+    if (this.manifRef.current) {
+      const seam = this.manifRef.current.offsetTop + this.manifRef.current.offsetHeight;
+      const wp = c01((y - (seam - vh)) / (vh * 1.5));
+      const inn = ease(c01(wp / 0.42));
+      const out = ease(c01((wp - 0.58) / 0.42));
+      const rs = document.documentElement.style;
+      rs.setProperty('--qx-t', ((1 - inn) * 100).toFixed(2) + '%');
+      rs.setProperty('--qx-b', (out * 100).toFixed(2) + '%');
+      rs.setProperty('--qx-y', ((1 - inn) * 26 - out * 20).toFixed(2) + '%');
+    }
+
+    // reveal-on-enter, reversible
+    const root = this.idxRef.current && this.idxRef.current.getRootNode();
+    if (!this._rvs || !this._rvs.length) {
+      this._rvs = Array.prototype.slice.call((root && root.querySelectorAll ? root : document).querySelectorAll('[data-rv]'));
+    }
+    this._rvs.forEach(el => {
+      const r = el.getBoundingClientRect();
+      const p = ease(c01((vh - r.top) / (vh * 0.42)));
+      el.style.opacity = p.toFixed(3);
+      el.style.transform = 'translateY(' + ((1 - p) * 40).toFixed(1) + 'px)';
+    });
+
+    // hero: letters splay apart and lift away as the section leaves
+    const hero = this.heroRef.current;
+    if (hero && this._heroFree) {
+      const hr = hero.getBoundingClientRect();
+      const hp = c01(-hr.top / Math.max(1, hr.height * 0.85));
+      hero.querySelectorAll('[data-hl]').forEach((el, i) => {
+        const dir = i - 3.5;
+        el.style.transform = 'translate3d(' + (dir * hp * 34).toFixed(1) + 'px,' + (-hp * (60 + Math.abs(dir) * 26)).toFixed(1) + 'px,0) rotate(' + (dir * hp * 3).toFixed(2) + 'deg)';
+        el.style.opacity = (1 - hp * 0.9).toFixed(3);
+      });
+    }
+
+    // Always on: the word tracks apart while the film window opens to full bleed
+    const wp2 = this._prog(this.wipeRef.current, 52);
+    if (wp2 !== null) {
+      const e = ease(wp2);
+      if (this.wipeImgRef.current) {
+        const img = this.wipeImgRef.current;
+        img.style.width = (24 + e * 72).toFixed(2) + 'vw';
+        img.style.height = (58 + e * 42).toFixed(2) + 'vh';
+        img.style.clipPath = 'inset(' + ((1 - e) * 46).toFixed(2) + '% 0% ' + ((1 - e) * 46).toFixed(2) + '% 0%)';
+      }
+      if (this.wipeWordRef.current) {
+        const w = this.wipeWordRef.current;
+        w.style.letterSpacing = (-0.055 + e * 0.12).toFixed(4) + 'em';
+        w.style.opacity = (1 - e * 0.85).toFixed(3);
+        w.style.transform = 'scale(' + (1 + e * 0.16).toFixed(3) + ')';
+      }
+    }
+
+    // Why: words resolve, the film plane scrubs and rides through Z
+    const mfp = this._prog(this.manifRef.current, 52);
+    if (mfp !== null) {
+      if (!this._mWords) this._mWords = Array.prototype.slice.call(this.manifRef.current.querySelectorAll('[data-w]'));
+      const n = this._mWords.length;
+      const head = c01(mfp / 0.6) * (n + 5);
+      this._mWords.forEach((w, i) => {
+        const p = ease(c01(head - i));
+        w.style.opacity = (0.14 + p * 0.86).toFixed(3);
+        w.style.transform = 'translateY(' + ((1 - p) * 14).toFixed(1) + 'px)';
+      });
+
+      const fr = c01((mfp - 0.02) / 0.94) * (this._whyN - 1);
+      const i0 = Math.min(this._whyN - 1, Math.floor(fr));
+      const i1 = Math.min(this._whyN - 1, i0 + 1);
+      if (this._whyI !== i0) {
+        this._whyI = i0;
+        if (this.whyF0Ref.current) this.whyF0Ref.current.src = this._whySrc(i0);
+        if (this.whyF1Ref.current) this.whyF1Ref.current.src = this._whySrc(i1);
+      }
+      if (this.whyF1Ref.current) this.whyF1Ref.current.style.opacity = (fr - i0).toFixed(3);
+      const bell = mfp < 0.5 ? mfp * 2 : (1 - mfp) * 2;
+      const be = ease(c01(bell));
+      const edge = 0.42 + 0.58 * ease(c01(mfp / 0.14)) * ease(c01((1 - mfp) / 0.1));
+      if (this.whyPlaneRef.current) {
+        this.whyPlaneRef.current.style.transform = 'translate(-50%, -50%) translate3d(' + ((mfp - 0.5) * 9).toFixed(2) + 'vw,' + ((mfp - 0.5) * -14).toFixed(2) + 'vh,' + (-620 + be * 780).toFixed(1) + 'px) rotateX(' + ((0.5 - mfp) * 26).toFixed(2) + 'deg) rotateY(' + ((mfp - 0.5) * -22).toFixed(2) + 'deg) rotateZ(' + ((mfp - 0.5) * 7).toFixed(2) + 'deg) scale(' + (0.98 + be * 0.14).toFixed(3) + ')';
+        this.whyPlaneRef.current.style.opacity = edge.toFixed(3);
+      }
+      if (this.whyVeilRef.current) this.whyVeilRef.current.style.opacity = (0.72 - be * 0.26).toFixed(3);
+    }
+
+    // capability index: each panel holds at rest, then the next slides over it
+    const ip = this._prog(this.idxRef.current, 52);
+    if (ip !== null) {
+      const pn = 5;
+      const HOLD = 0.8, SLIDE = 1;
+      const total = pn * HOLD + (pn - 1) * SLIDE;
+      const u = c01(ip) * total;
+      const k = this._reduceMotion ? 0.4 : 1;
+      const eOut = t => 1 - Math.pow(2, -9 * t);
+      const eBack = t => { const c = 1.34; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+      const inAt = i => HOLD + (i - 1) * (SLIDE + HOLD);
+      const raw = i => (i === 0 ? 1 : c01((u - inAt(i)) / SLIDE));
+      const panels = this.idxRef.current.querySelectorAll('[data-panel]');
+      for (let i = 0; i < panels.length; i++) {
+        const t = raw(i);
+        const inT = i === 0 ? 1 : eOut(t);
+        const spring = i === 0 ? 1 : (this._reduceMotion ? eOut(t) : eBack(t));
+        const outT = i === panels.length - 1 ? 0 : eOut(raw(i + 1));
+        const p = panels[i];
+        p.style.transform = 'translate3d(0,' + ((1 - inT) * 100 - outT * 7).toFixed(2) + '%,0) scale(' + (1 - outT * 0.08).toFixed(3) + ')';
+        p.style.opacity = '1';
+        p.style.filter = outT > 0.001 ? 'brightness(' + (1 - outT * 0.4).toFixed(3) + ')' : 'none';
+        p.style.zIndex = String(i + 1);
+        const r = ((1 - inT) * 40 * k).toFixed(1);
+        p.style.borderRadius = r + 'px ' + r + 'px 0 0';
+        p.style.boxShadow = i === 0 ? 'none' : '0 -30px 70px rgba(0,0,0,' + (0.34 * inT * k).toFixed(3) + ')';
+        const num = p.querySelector('[data-plane="num"]');
+        const copy = p.querySelector('[data-plane="copy"]');
+        const head2 = p.querySelector('[data-plane="head"]');
+        if (num) num.style.transform = 'translate3d(0,' + ((1 - spring) * 22 * k).toFixed(2) + '%,0)';
+        if (copy) copy.style.transform = 'translate3d(0,' + ((1 - spring) * -14 * k).toFixed(2) + '%,0)';
+        if (head2) head2.style.transform = 'translate3d(0,' + ((1 - inT) * 108 * k).toFixed(2) + '%,0)';
+      }
+    }
+
+    // goals: rule wipes across, numeral and title rise out of their masks, copy follows
+    if (this.progrRef.current) {
+      const k = this._reduceMotion ? 0.5 : 1;
+      const gr = this.progrRef.current.getBoundingClientRect();
+      // powder scrubs across the whole section; fades in as it enters, out as it leaves
+      const span = Math.max(1, gr.height - vh);
+      const pp = c01((-gr.top) / span);
+      const fadeIn = c01((vh - gr.top) / (vh * 0.55));
+      const fadeOut = c01((gr.bottom - vh * 0.05) / (vh * 0.35));
+      this._drawPour(pp, Math.min(fadeIn, fadeOut));
+      this.progrRef.current.querySelectorAll('[data-goalrow]').forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.bottom < -vh * 0.3 || r.top > vh * 1.35) return;
+        const p = ease(c01((vh * 0.88 - r.top) / (vh * 0.5)));
+        const rule = el.querySelector('[data-grule]');
+        const num = el.querySelector('[data-gnum]');
+        const title = el.querySelector('[data-gtitle]');
+        const body = el.querySelector('[data-gbody]');
+        if (rule) rule.style.transform = 'scaleX(' + p.toFixed(3) + ')';
+        const np = ease(c01((p - 0.1) / 0.6));
+        if (num) num.style.transform = 'translate3d(0,' + ((1 - np) * 110 * k).toFixed(1) + '%,0)';
+        const tp = ease(c01((p - 0.2) / 0.6));
+        if (title) title.style.transform = 'translate3d(0,' + ((1 - tp) * 120 * k).toFixed(1) + '%,0)';
+        const bp = ease(c01((p - 0.42) / 0.5));
+        if (body) {
+          body.style.opacity = bp.toFixed(3);
+          body.style.transform = 'translate3d(0,' + ((1 - bp) * 20 * k).toFixed(1) + 'px,0)';
+        }
+      });
+    }
+  }
+
+  _whySrc(i) {
+    return 'assets/why2/w' + String(Math.max(0, Math.min(this._whyN - 1, i))).padStart(2, '0') + '.jpg';
+  }
+
+
+  renderVals() {
+    return {
+      idxRef: this.idxRef,
+      bigNumRef: this.bigNumRef,
+      barRef: this.barRef,
+      ratioRef: this.ratioRef,
+      ctaRef: this.ctaRef,
+      heroRef: this.heroRef,
+      progRef: this.progRef,
+      wipeRef: this.wipeRef,
+      wipeWordRef: this.wipeWordRef,
+      wipeImgRef: this.wipeImgRef,
+      wipePctRef: this.wipePctRef,
+      wipeRuleRef: this.wipeRuleRef,
+      loadRef: this.loadRef,
+      loadTopRef: this.loadTopRef,
+      loadBotRef: this.loadBotRef,
+      loadNumRef: this.loadNumRef,
+      hudIdxRef: this.hudIdxRef,
+      hudLabelRef: this.hudLabelRef,
+      hudPctRef: this.hudPctRef,
+      markRef: this.markRef,
+      odoRef: this.odoRef,
+      progrRef: this.progrRef,
+      pourRef: this.pourRef,
+      goalLabelRef: this.goalLabelRef,
+      progrPctRef: this.progrPctRef,
+      railRef: this.railRef,
+      manifRef: this.manifRef,
+      manifRuleRef: this.manifRuleRef,
+      whyPlaneRef: this.whyPlaneRef,
+      whyF0Ref: this.whyF0Ref,
+      whyF1Ref: this.whyF1Ref,
+      whyVeilRef: this.whyVeilRef,
+      whyPctRef: this.whyPctRef,
+      filmRef: this.filmRef
+    };
+  }
+}
+</script>
+</body>
+</html>

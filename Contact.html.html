@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" referrerpolicy="no-referrer">
+<style>
+  html, body { margin: 0; padding: 0; background: #f4f4f1; }
+  * { box-sizing: border-box; }
+  a { color: #0a0a0a; text-decoration: none; }
+  a:hover { color: #e8702a; }
+  ::selection { background: #e8702a; color: #fff; }
+  input, textarea, button { font-family: inherit; }
+  @keyframes fx-rise { from { transform: translateY(105%); } to { transform: translateY(0); } }
+  @keyframes fx-fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes fx-vline { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+</style>
+</helmet>
+
+<div style="position: relative; width: 100%; min-height: 100vh; background: #f4f4f1; color: #0a0a0a; font-family: 'PP Neue Montreal', 'Archivo', sans-serif; overflow-x: clip;">
+
+
+  <nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: rgba(244,244,241,0.86); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(10,10,10,0.16);">
+    <div style="display: grid; grid-template-columns: repeat(12, 1fr); align-items: center; height: 52px; padding: 0 2vw; gap: 0;">
+      <a href="Lithos%20Hero.dc.html" style="grid-column: span 3; display: flex; align-items: center; gap: 10px; color: #0a0a0a; text-decoration: none;">
+        <svg width="16" height="16" viewBox="0 0 256 256" fill="#0a0a0a"><path d="M 256 256 L 128 256 L 0 128 L 128 128 Z M 256 128 L 128 128 L 0 0 L 128 0 Z"></path></svg>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;">Quanta</span>
+      </a>
+      <div style="grid-column: span 6; display: flex; justify-content: center; gap: 28px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;">
+        <a href="Benefits.dc.html" style="color: #0a0a0a; text-decoration: none;">Benefits</a>
+        <a href="Features%203.dc.html" style="color: #0a0a0a; text-decoration: none;">Features</a>
+      </div>
+      <div style="grid-column: span 3; display: flex; justify-content: flex-end; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;">
+        <a href="Contact.dc.html" style="display: inline-flex; align-items: center; white-space: nowrap; border: 1px solid rgba(10,10,10,0.3); padding: 7px 14px; color: #0a0a0a; text-decoration: none;" style-hover="background: #0a0a0a; color: #f4f4f1;">Start My Strategy</a>
+      </div>
+    </div>
+  </nav>
+
+  
+
+  <section data-screen-label="Contact" style="position: relative; z-index: 10; padding: 116px 2vw 90px 2vw;">
+
+    <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 48px 24px; padding-top: 34px;">
+
+      <div style="grid-column: 1 / span 6; display: flex; flex-direction: column; gap: 30px;">
+        <h1 style="margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: -0.05em; line-height: 0.84; font-size: clamp(2.6rem, 6.6vw, 7rem);">
+          <span style="display: block; overflow: hidden;"><span style="display: block; animation: fx-rise 1.1s cubic-bezier(0.16,1,0.3,1) 0.24s both;">Let's talk</span></span>
+          <span style="display: block; overflow: hidden;"><span style="display: block; animation: fx-rise 1.1s cubic-bezier(0.16,1,0.3,1) 0.32s both;">about your</span></span>
+          <span style="display: block; overflow: hidden;"><span style="display: block; animation: fx-rise 1.1s cubic-bezier(0.16,1,0.3,1) 0.4s both; color: #e8702a;">floor</span></span>
+        </h1>
+        <p style="margin: 0; max-width: 40ch; font-size: clamp(1rem, 1.25vw, 1.25rem); line-height: 1.45; color: rgba(10,10,10,0.75); animation: fx-fade 1s ease-out 0.6s both;">Tell us about your space and your members. We'll design the setup that fits and get you a quote within two business days.</p>
+        <div style="display: flex; flex-direction: column; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: rgba(10,10,10,0.6); max-width: 42ch; animation: fx-fade 1s ease-out 0.75s both;">
+          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(10,10,10,0.14); padding-bottom: 9px;"><span>Email</span><a href="mailto:quantavending@gmail.com" style="color: #0a0a0a;">quantavending@gmail.com</a></div>
+          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(10,10,10,0.14); padding-bottom: 9px;"><span>Survey</span><span style="color: #0a0a0a;">Free, on site</span></div>
+          <div style="display: flex; justify-content: space-between;"><span>Install</span><span style="color: #e8702a;">Handled by us</span></div>
+        </div>
+      </div>
+
+      <div style="grid-column: 8 / span 5; border-top: 2px solid #0a0a0a; padding-top: 22px; animation: fx-fade 1s ease-out 0.5s both;">
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ onSubmit }}" autoComplete="on" style="display: flex; flex-direction: column; gap: 26px;">
+            <input type="text" name="botcheck" tabindex="-1" autoComplete="off" aria-hidden="true" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; left: -9999px;">
+            <label style="display: flex; flex-direction: column; gap: 8px;">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(10,10,10,0.55);">Name</span>
+              <input type="text" placeholder="Your name" name="name" required="" maxlength="80" autoComplete="name" spellcheck="false" style="background: transparent; border: 0; border-bottom: 1px solid rgba(10,10,10,0.28); padding: 10px 0; font-size: 1.05rem; color: #0a0a0a; outline: none;" style-focus="border-bottom-color: #e8702a;">
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 8px;">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(10,10,10,0.55);">Phone</span>
+              <input type="tel" placeholder="Your phone number" name="phone" maxlength="32" autoComplete="tel" inputMode="tel" style="background: transparent; border: 0; border-bottom: 1px solid rgba(10,10,10,0.28); padding: 10px 0; font-size: 1.05rem; color: #0a0a0a; outline: none;" style-focus="border-bottom-color: #e8702a;">
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 8px;">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(10,10,10,0.55);">Email</span>
+              <input type="email" placeholder="you@gym.com" name="email" required="" maxlength="140" autoComplete="email" spellcheck="false" style="background: transparent; border: 0; border-bottom: 1px solid rgba(10,10,10,0.28); padding: 10px 0; font-size: 1.05rem; color: #0a0a0a; outline: none;" style-focus="border-bottom-color: #e8702a;">
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 8px;">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(10,10,10,0.55);">Gym</span>
+              <input type="text" placeholder="Gym name" name="gym" maxlength="120" autoComplete="organization" style="background: transparent; border: 0; border-bottom: 1px solid rgba(10,10,10,0.28); padding: 10px 0; font-size: 1.05rem; color: #0a0a0a; outline: none;" style-focus="border-bottom-color: #e8702a;">
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 8px;">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(10,10,10,0.55);">Members</span>
+              <input type="text" placeholder="How many members" name="members" maxlength="24" inputMode="numeric" style="background: transparent; border: 0; border-bottom: 1px solid rgba(10,10,10,0.28); padding: 10px 0; font-size: 1.05rem; color: #0a0a0a; outline: none;" style-focus="border-bottom-color: #e8702a;">
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 8px;">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(10,10,10,0.55);">Goals</span>
+              <textarea rows="3" placeholder="What you want Quanta to do for your gym…" name="goals" maxlength="1200" style="background: transparent; border: 0; border-bottom: 1px solid rgba(10,10,10,0.28); padding: 10px 0; font-size: 1.05rem; color: #0a0a0a; outline: none; resize: none;" style-focus="border-bottom-color: #e8702a;"></textarea>
+            </label>
+            <button type="submit" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 18px; background: #0a0a0a; color: #f4f4f1; border: 1px solid #0a0a0a; padding: 16px 22px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer;" style-hover="background: #e8702a; border-color: #e8702a; color: #0a0a0a;">
+              <span>{{ btnLabel }}</span><span>→</span>
+            </button>
+            <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
+              <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #e8702a;">{{ error }}</p>
+            </sc-if>
+          </form>
+        </sc-if>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #e8702a;">Received</div>
+            <h2 style="margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: -0.04em; line-height: 0.9; font-size: clamp(1.6rem, 3vw, 3rem);">You're in</h2>
+            <p style="margin: 0; max-width: 34ch; font-size: 1.05rem; line-height: 1.5; color: rgba(10,10,10,0.72);">Your enquiry landed in our inbox — we'll reply within two business days.</p>
+            <a href="Features%203.dc.html" style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; border-bottom: 1px solid #0a0a0a; width: fit-content;">See the features →</a>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; border-top: 1px solid rgba(10,10,10,0.16); margin-top: 76px; padding-top: 14px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(10,10,10,0.5);">
+      <span>Quanta — Contact</span>
+      
+    </div>
+  </section>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#e8702a&quot;,&quot;options&quot;:[&quot;#e8702a&quot;,&quot;#0a0a0a&quot;,&quot;#1f4bff&quot;,&quot;#d8ff3e&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;formKey&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Form&quot;}}">
+class Component extends DCLogic {
+  state = { sent: false, sending: false, error: '' };
+
+  componentDidMount() { this._mounted = Date.now(); }
+
+  renderVals() {
+    const key = (this.props.formKey || '').trim();
+    return {
+      sent: this.state.sent,
+      notSent: !this.state.sent,
+      sending: this.state.sending,
+      error: this.state.error,
+      hasError: !!this.state.error,
+      btnLabel: this.state.sending ? 'Sending…' : 'Send enquiry',
+      onSubmit: async e => {
+        e.preventDefault();
+        if (this.state.sending) return;
+        const form = e.target;
+        const d = new FormData(form);
+        // clamp length, strip control chars / CR-LF (blocks mail-header injection)
+        const clean = (v, max) => (v || '').toString()
+          .replace(/[\u0000-\u001F\u007F]+/g, ' ')
+          .replace(/\s{3,}/g, '  ')
+          .trim().slice(0, max);
+        const lens = { name: 80, phone: 32, email: 140, gym: 120, members: 24, goals: 1200 };
+        const g = k => clean(d.get(k), lens[k] || 200);
+
+        // honeypot: only bots fill this
+        if ((d.get('botcheck') || '').toString().length) { this.setState({ sent: true }); return; }
+        // too fast to be human
+        if (Date.now() - (this._mounted || 0) < 2500) {
+          this.setState({ error: 'Please take a moment before sending.' });
+          return;
+        }
+        // throttle: one send per 15s
+        if (Date.now() - (this._lastSend || 0) < 15000) {
+          this.setState({ error: 'Just sent — give it a moment.' });
+          return;
+        }
+        if (!g('name')) { this.setState({ error: 'Please add your name.' }); return; }
+        if (!/^[^\s@<>"']+@[^\s@<>"',]+\.[a-z]{2,}$/i.test(g('email'))) {
+          this.setState({ error: 'Please check your email address.' });
+          return;
+        }
+        if (/https?:\/\/|\[url|<a\s/i.test(g('goals'))) {
+          this.setState({ error: 'Links are not accepted — describe it in words.' });
+          return;
+        }
+        this._lastSend = Date.now();
+
+        // no key configured yet: fall back to opening the visitor's mail app
+        if (!key) {
+          const body = ['Name: ' + g('name'), 'Phone: ' + g('phone'), 'Email: ' + g('email'), 'Gym: ' + g('gym'), 'Members: ' + g('members'), '', 'Goals:', g('goals')].join('\n');
+          window.location.href = 'mailto:quantavending@gmail.com?subject=' + encodeURIComponent('Quanta enquiry — ' + (g('gym') || g('name') || 'new lead')) + '&body=' + encodeURIComponent(body);
+          this.setState({ sent: true });
+          return;
+        }
+
+        this.setState({ sending: true, error: '' });
+        const ctl = new AbortController();
+        const bail = setTimeout(() => ctl.abort(), 15000);
+        try {
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            signal: ctl.signal,
+            referrerPolicy: 'no-referrer',
+            credentials: 'omit',
+            mode: 'cors',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify({
+              access_key: key,
+              subject: 'Quanta enquiry — ' + (g('gym') || g('name') || 'new lead'),
+              from_name: 'Quanta website',
+              name: g('name'),
+              phone: g('phone'),
+              email: g('email'),
+              gym: g('gym'),
+              members: g('members'),
+              goals: g('goals')
+            })
+          });
+          const out = await res.json().catch(() => ({}));
+          if (!res.ok || out.success === false) throw new Error('rejected');
+          form.reset();
+          this.setState({ sending: false, sent: true });
+        } catch (err) {
+          this._lastSend = 0;
+          this.setState({ sending: false, error: 'Could not send — email us at quantavending@gmail.com' });
+        } finally {
+          clearTimeout(bail);
+        }
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

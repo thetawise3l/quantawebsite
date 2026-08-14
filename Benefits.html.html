@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@1,400;1,500;1,600&amp;family=Readex+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" referrerpolicy="no-referrer">
+<link href="https://fonts.cdnfonts.com/css/pp-neue-montreal" rel="stylesheet" referrerpolicy="no-referrer">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" referrerpolicy="no-referrer">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+<style>
+  * { font-family: 'PP Neue Montreal', 'Archivo', sans-serif; }
+  body { margin: 0; background: #f4f4f1; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: inherit; }
+  .font-playfair { font-family: 'PP Neue Montreal', 'Archivo', sans-serif; font-style: normal; font-weight: 700; letter-spacing: -0.03em; }
+  .hero-overlay, .hero-overlay * { font-family: 'PP Neue Montreal', 'Archivo', sans-serif; }
+  @keyframes spin360 { to { transform: rotate(360deg); } }
+  @keyframes gustA { 0% { transform: translate(-30vw, 0) rotate(-6deg) skewX(-14deg); opacity: 0; } 10% { opacity: 1; } 24% { opacity: 0.1; } 40% { transform: translate(45vw, -12vh) rotate(4deg) skewX(-10deg); opacity: 0.9; } 55% { opacity: 0.15; } 70% { transform: translate(105vw, 8vh) rotate(-8deg) skewX(-16deg); opacity: 1; } 84% { opacity: 0.2; } 100% { transform: translate(160vw, -6vh) rotate(3deg) skewX(-12deg); opacity: 0; } }
+  @keyframes gustB { 0% { transform: translate(-40vw, 0) rotate(5deg) skewX(-8deg); opacity: 0; } 12% { opacity: 0.95; } 28% { opacity: 0.1; } 45% { transform: translate(60vw, 14vh) rotate(-6deg) skewX(-4deg); opacity: 0.85; } 62% { opacity: 0.12; } 80% { transform: translate(140vw, -10vh) rotate(7deg) skewX(-10deg); opacity: 1; } 100% { transform: translate(180vw, 4vh) rotate(-3deg) skewX(-8deg); opacity: 0; } }
+  @keyframes gustC { 0% { transform: translate(-35vw, 0) rotate(-4deg) skewX(-6deg); opacity: 0; } 11% { opacity: 0.9; } 26% { opacity: 0.08; } 38% { transform: translate(35vw, 10vh) rotate(8deg) skewX(-12deg); opacity: 0.8; } 52% { opacity: 0.15; } 68% { transform: translate(100vw, -14vh) rotate(-5deg) skewX(-6deg); opacity: 1; } 82% { opacity: 0.1; } 100% { transform: translate(170vw, 6vh) rotate(4deg) skewX(-10deg); opacity: 0; } }
+  .qv-work #qv-grid-canvas { position: absolute; top: 0; left: 0; z-index: 0; }
+  .qv-work #qv-letters-canvas { position: absolute; top: 0; left: 0; z-index: 1; }
+  .qv-letter { position: absolute; font-family: 'PP Neue Montreal', 'Archivo', sans-serif; font-size: 7rem; font-weight: 900; letter-spacing: -0.02em; color: #0a0a0a; z-index: 2; transform-origin: center; transform-style: preserve-3d; will-change: transform; }
+  @keyframes fx-vline { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  @keyframes fx-rise { from { transform: translateY(105%); } to { transform: translateY(0); } }
+  @keyframes fx-fade { from { opacity: 0; } to { opacity: 1; } }
+</style>
+</helmet>
+<div style="width: 100%; background: #0a0a0a;">
+
+  <nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: rgba(244,244,241,0.86); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(10,10,10,0.16);">
+    <div style="display: grid; grid-template-columns: repeat(12, 1fr); align-items: center; height: 52px; padding: 0 2vw; gap: 0;">
+      <a href="Lithos%20Hero.dc.html" style="grid-column: span 3; display: flex; align-items: center; gap: 10px; color: #0a0a0a; text-decoration: none;">
+        <svg width="16" height="16" viewBox="0 0 256 256" fill="#0a0a0a"><path d="M 256 256 L 128 256 L 0 128 L 128 128 Z M 256 128 L 128 128 L 0 0 L 128 0 Z"></path></svg>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;">Quanta</span>
+      </a>
+      <div style="grid-column: span 6; display: flex; justify-content: center; gap: 28px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;">
+        <a href="Benefits.dc.html" style="color: #e8702a; text-decoration: none;">Benefits</a>
+        <a href="Features%203.dc.html" style="color: #0a0a0a; text-decoration: none;">Features</a>
+      </div>
+      <div style="grid-column: span 3; display: flex; justify-content: flex-end; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;">
+        <a href="Contact.dc.html" style="display: inline-flex; align-items: center; white-space: nowrap; border: 1px solid rgba(10,10,10,0.3); padding: 7px 14px; color: #0a0a0a; text-decoration: none;" style-hover="background: #0a0a0a; color: #f4f4f1;">Start My Strategy</a>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+
+  <!-- Scroll scrubs the (pre-decoded) video; DO NOT REMOVE -->
+  <div ref="{{ driverRef }}" class="relative" style="height: 520vh; background: #000;">
+    <div class="sticky top-0 overflow-hidden" style="height: 100vh; background: #000;">
+      <div aria-hidden="true" style="position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 5;">
+        <div style="position: absolute; top: 18%; left: 0; width: 75vw; height: 240px; background: radial-gradient(ellipse at center, rgba(195,195,205,0.28), transparent 70%); filter: blur(38px); animation: gustA 16s ease-in-out infinite;"></div>
+        <div style="position: absolute; top: 50%; left: 0; width: 85vw; height: 300px; background: radial-gradient(ellipse at center, rgba(180,180,190,0.24), transparent 70%); filter: blur(48px); animation: gustB 22s ease-in-out infinite; animation-delay: -8s;"></div>
+        <div style="position: absolute; top: 76%; left: 0; width: 65vw; height: 200px; background: radial-gradient(ellipse at center, rgba(205,205,215,0.20), transparent 70%); filter: blur(34px); animation: gustC 26s ease-in-out infinite; animation-delay: -14s;"></div>
+      </div>
+      <canvas ref="{{ canvasRef }}" class="absolute inset-0" style="width: 100%; height: 100%; display: block;"></canvas>
+      <video ref="{{ videoRef }}" src="assets/benefits-scrub.mp4" muted="" playsinline="" preload="auto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; pointer-events: none;"></video>
+
+      <div class="hero-overlay absolute inset-0 z-10 pointer-events-none select-none text-black"></div>
+
+      <div ref="{{ loaderRef }}" class="absolute inset-0 flex flex-col items-center justify-center z-20" style="background: #000; transition: opacity 0.6s ease;">
+        <div style="width: 34px; height: 34px; border: 2px solid rgba(255,255,255,0.25); border-top-color: #fff; border-radius: 50%; animation: spin360 0.9s linear infinite;"></div>
+        <p class="uppercase text-white/45 mt-5" style="letter-spacing: 0.3em; font-size: 11px;">Preparing</p>
+      </div>
+    </div>
+  </div>
+
+  <section vv-hero="" data-screen-label="Silhouettes" style="position: relative; width: 100%; height: 100svh; overflow: hidden;">
+    <div class="vv-fg-content" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform-origin: center center; background-color: #0a0a0a; clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); will-change: clip-path, transform; z-index: 2;">
+      <div style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 95%; padding: 2rem; color: #ffffff; text-align: center;">
+        <h1 style="text-transform: uppercase; font-family: 'PP Neue Montreal', 'Archivo', sans-serif; font-weight: 500; line-height: 0.8; letter-spacing: -0.03em; font-size: clamp(2rem, 8vw, 14rem); margin: 0;">Everything your gym deserves.</h1>
+      </div>
+      <div class="vv-fg-overlay-dark" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; will-change: opacity; background-color: #0a0a0a;"></div>
+      <div class="vv-fg-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; will-change: opacity; background-color: #e8702a;"></div>
+    </div>
+
+    <div class="vv-bg-content" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; background-color: #f4f4f1; z-index: 0;">
+      <div style="flex: 1; height: 100%; display: flex; align-items: center; padding: 2rem;">
+        <div class="vv-bg-copy" style="display: flex; flex-direction: column; gap: 0.5rem; width: 50%; will-change: transform;">
+          <h3 style="text-transform: uppercase; font-family: 'PP Neue Montreal', 'Archivo', sans-serif; font-weight: 500; line-height: 0.8; letter-spacing: -0.03em; font-size: clamp(2rem, 5vw, 8rem); margin: 0; color: #e8702a;">Effortless</h3>
+          <p style="text-transform: uppercase; font-family: 'PP Neue Montreal', 'Archivo', sans-serif; font-size: 1.35rem; font-weight: 500; line-height: 1.1; margin: 0; color: #0a0a0a;">Don't worry about the machine, refills, or maintenance. Quanta keeps everything running smoothly with product refills, free shipping for a limited time, and full support when you need it.</p>
+        </div>
+      </div>
+      <div style="flex: 1; height: 100%; display: flex; align-items: center; justify-content: flex-end; padding: 2rem;">
+        <div class="vv-bg-copy" style="display: flex; flex-direction: column; gap: 0.5rem; width: 50%; will-change: transform;">
+          <h3 style="text-transform: uppercase; font-family: 'PP Neue Montreal', 'Archivo', sans-serif; font-weight: 500; line-height: 0.8; letter-spacing: -0.03em; font-size: clamp(2rem, 5vw, 8rem); margin: 0; color: #e8702a;">Variety</h3>
+          <p style="text-transform: uppercase; font-family: 'PP Neue Montreal', 'Archivo', sans-serif; font-size: 1.35rem; font-weight: 500; line-height: 1.1; margin: 0; color: #0a0a0a;">Give your members more of what they love in one place. Quanta provides instant access to a wide range of supplements and drinks through one simple machine.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="vv-outro-content" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; z-index: 1;">
+      <div class="vv-outro-img" style="flex: 1; height: 100%; will-change: clip-path; clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%); background-color: #e8702a;"></div>
+      <div class="vv-outro-img" style="flex: 1; height: 100%; will-change: clip-path; clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%); background-color: #0a0a0a;"></div>
+      <div class="vv-outro-header" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #ffffff; text-align: center; width: 60%;">
+        <h3 style="text-transform: uppercase; font-family: 'PP Neue Montreal', 'Archivo', sans-serif; font-weight: 500; line-height: 1.02; letter-spacing: -0.03em; font-size: clamp(2rem, 4.2vw, 6.4rem); margin: 0;">You become the shape that the light finally learns to find.</h3>
+      </div>
+    </div>
+  </section>
+
+  <section ref="{{ workRef }}" class="qv-work" data-screen-label="Community" style="position: relative; width: 100%; height: 800vh; background-color: #f4f4f1;"></section>
+
+  
+
+  <section data-screen-label="Split detail" style="position: relative; width: 100%; background-color: #f4f4f1; color: #0a0a0a; display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(10,10,10,0.22);">
+    <div style="position: relative;">
+      <div style="position: sticky; top: 0; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; gap: 4rem; padding: 6rem 4vw;">
+        <h2 style="margin: 0; max-width: 22ch; text-transform: uppercase; font-family: 'PP Neue Montreal', 'Archivo', sans-serif; font-weight: 700; line-height: 0.86; letter-spacing: -0.035em; font-size: clamp(2.2rem, 4vw, 4.4rem);">Made without compromise</h2>
+        <div style="display: flex; flex-direction: column; gap: 1.6rem; max-width: 46ch; font-family: 'PP Neue Montreal', 'Archivo', sans-serif; font-size: clamp(0.95rem, 1.1vw, 1.1rem); line-height: 1.6; color: rgba(10,10,10,0.75);">
+          <p style="margin: 0;">Every Quanta machine is installed, stocked and serviced by us. No storage room to clear out, no inventory to chase, no staff time spent on refills.</p>
+          <p style="margin: 0;">We choose the products with you&nbsp;<br>&nbsp;supplements, shakes and drinks your members already ask for, priced so they stop leaving the building to buy them.</p>
+          <p style="margin: 0;">One machine, one point of contact, and a set-up that pays for itself in traffic your gym already has.</p>
+        </div>
+        
+      </div>
+    </div>
+
+    <div style="border-left: 1px solid rgba(10,10,10,0.22);">
+      <div data-rv="up" style="opacity: 0; transform: translateY(40px); min-height: 88vh; display: flex; flex-direction: column; justify-content: center; gap: 1.4rem; padding: 5rem 4vw; border-bottom: 1px solid rgba(10,10,10,0.22);">
+        <h3 style="margin: 0; font-family: 'PP Neue Montreal', 'Archivo', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: -0.035em; line-height: 0.86; font-size: clamp(2.8rem, 5.6vw, 5.6rem); color: #e8702a;">Convenience</h3>
+        <p style="margin: 0; max-width: 40ch; font-family: 'PP Neue Montreal', 'Archivo', sans-serif; font-size: clamp(1rem, 1.15vw, 1.15rem); line-height: 1.55; color: rgba(10,10,10,0.72);">Help members get what they need without leaving the gym or overspending. Quanta replaces outdated options with a smarter, easier way to fuel their goals.</p>
+      </div>
+      <div data-rv="up" style="opacity: 0; transform: translateY(40px); min-height: 88vh; display: flex; flex-direction: column; justify-content: center; gap: 1.4rem; padding: 5rem 4vw; border-bottom: 1px solid rgba(10,10,10,0.22);">
+        <h3 style="margin: 0; font-family: 'PP Neue Montreal', 'Archivo', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: -0.035em; line-height: 0.86; font-size: clamp(2.8rem, 5.6vw, 5.6rem); color: #e8702a;">Freshness</h3>
+        <p style="margin: 0; max-width: 40ch; font-family: 'PP Neue Montreal', 'Archivo', sans-serif; font-size: clamp(1rem, 1.15vw, 1.15rem); line-height: 1.55; color: rgba(10,10,10,0.72);">Fresh shakes made when members need them most. Quanta delivers quick, convenient nutrition before or after every workout.</p>
+      </div>
+      <div data-rv="up" style="opacity: 0; transform: translateY(40px); min-height: 88vh; display: flex; flex-direction: column; justify-content: center; gap: 1.4rem; padding: 5rem 4vw;">
+        <h3 style="margin: 0; font-family: 'PP Neue Montreal', 'Archivo', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: -0.035em; line-height: 0.86; font-size: clamp(2.8rem, 5.6vw, 5.6rem); color: #e8702a;">Community</h3>
+        <p style="margin: 0; max-width: 40ch; font-family: 'PP Neue Montreal', 'Archivo', sans-serif; font-size: clamp(1rem, 1.15vw, 1.15rem); line-height: 1.55; color: rgba(10,10,10,0.72);">Your gym is a community, not just a place to train. Quanta helps you show members you care by giving them the&nbsp; support and nutrition they need beyond<br>&nbsp;their workouts.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Next" style="position: relative; width: 100%; background: #0a0a0a; color: #f4f4f1; border-top: 1px solid rgba(244,244,241,0.18);">
+    <a href="Features%203.dc.html" style="display: flex; flex-direction: column; justify-content: space-between; gap: 6rem; min-height: 78vh; padding: 8rem 4vw 4rem 4vw; text-decoration: none; color: inherit;" style-hover="background: #e8702a;">
+      <h2 style="margin: 0; max-width: 20ch; font-family: 'PP Neue Montreal', 'Archivo', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: -0.045em; line-height: 0.84; font-size: clamp(3rem, 11vw, 11rem);">Features</h2>
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 3rem; border-top: 1px solid rgba(244,244,241,0.18); padding-top: 1.6rem;">
+        <p style="margin: 0; max-width: 44ch; font-family: 'PP Neue Montreal', 'Archivo', sans-serif; font-size: clamp(1rem, 1.15vw, 1.15rem); line-height: 1.55; color: rgba(244,244,241,0.66);">See the five things the machine never stops doing once it is on your floor.</p>
+        <span style="font-family: 'JetBrains Mono', monospace; text-transform: uppercase; font-size: 11px; letter-spacing: 0.2em; white-space: nowrap;">Go &rarr;</span>
+      </div>
+    </a>
+  </section>
+
+  </div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.driverRef = React.createRef();
+    this.videoRef = React.createRef();
+    this.workRef = React.createRef();
+    this.rvRef = React.createRef();
+    ['loadRef','loadTopRef','loadBotRef','loadNumRef','railRef','hudIdxRef','hudLabelRef','hudPctRef','progRef'].forEach(k => { this[k] = React.createRef(); });
+    this.canvasRef = React.createRef();
+    this.loaderRef = React.createRef();
+    this.frames = [];
+    this.N = 0;
+    this.progress = 0;
+    this.targetP = 0;
+    this.lastIdx = -1;
+    this.ready = false;
+    this.raf = null;
+    this.scenes = null;
+    this.onScroll = this.onScroll.bind(this);
+    this.onResize = this.onResize.bind(this);
+  }
+
+  componentDidMount() {
+    const v = this.videoRef.current;
+    const self = this;
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize);
+    this.resizeCanvas();
+    this.onScroll();
+    this.startLoop();
+    this.initVoyeur();
+    this.initWork();
+    this.initReverse();
+    this.initChrome();
+    setTimeout(function () { self.initReverse(); }, 400);
+
+    const poster = new Image();
+    poster.onload = function () {
+      if (self.ready) return;
+      self.frames = [poster];
+      self.N = 1;
+      self.lastIdx = -1;
+      self.draw(0);
+      self.hideLoader();
+    };
+    poster.src = 'assets/benefits-poster.png';
+
+    if (!v) return;
+    v.muted = true;
+    v.playsInline = true;
+
+    // The asset host serves the mp4 without range support, so the element's own
+    // progressive load stalls at readyState 0 and seeking never works. Fetch the
+    // file once and hand the decoder a blob URL, which is fully seekable.
+    (async function () {
+      try {
+        const res = await fetch(v.getAttribute('src'));
+        if (!res.ok) return;
+        const blob = await res.blob();
+        if (self._blobUrl) URL.revokeObjectURL(self._blobUrl);
+        self._blobUrl = URL.createObjectURL(blob);
+        v.src = self._blobUrl;
+        v.load();
+      } catch (e) {}
+    })();
+
+    const fullyBuffered = function () {
+      const d = v.duration;
+      if (!isFinite(d) || d <= 0) return false;
+      try {
+        for (let i = 0; i < v.buffered.length; i++) {
+          if (v.buffered.start(i) <= 0.25 && v.buffered.end(i) >= d - 0.3) return true;
+        }
+      } catch (e) {}
+      return false;
+    };
+    const cleanup = function () {
+      clearInterval(self._iv);
+      v.removeEventListener('progress', check);
+      v.removeEventListener('canplaythrough', check);
+    };
+    const begin = function () {
+      if (self._begun) return;
+      if (!isFinite(v.duration) || v.duration <= 0) {
+        if (!self._durWait) { self._durWait = setInterval(function () {
+          if (isFinite(v.duration) && v.duration > 0) { clearInterval(self._durWait); self._durWait = null; begin(); }
+        }, 200); }
+        return;
+      }
+      self._begun = true;
+      if (self._durWait) { clearInterval(self._durWait); self._durWait = null; }
+      if (self._beginTimer) clearTimeout(self._beginTimer);
+      cleanup();
+      self.captureFrames();
+    };
+    const check = function () { if (fullyBuffered() || v.readyState >= 2) begin(); };
+    this._iv = setInterval(check, 200);
+    this._cleanup = cleanup;
+    v.addEventListener('progress', check);
+    v.addEventListener('loadeddata', check);
+    v.addEventListener('loadedmetadata', check);
+    v.addEventListener('canplay', check);
+    v.addEventListener('canplaythrough', check);
+
+    const p = v.play();
+    if (p && p.catch) p.catch(function () {});
+    check();
+
+    // last resort, seconds not minutes
+    this._beginTimer = setTimeout(begin, 4000);
+
+
+  }
+
+  async captureFrames() {
+    const v = this.videoRef.current;
+    const dur = v.duration;
+    try { v.pause(); } catch (e) {}
+    this.frames = []; this.N = 0; this.lastIdx = -1;
+
+    const N = Math.min(90, Math.max(48, Math.round(dur * 8)));
+    const cw = 800;
+    const ratio = (v.videoWidth && v.videoHeight) ? (v.videoHeight / v.videoWidth) : (9 / 16);
+    const ch = Math.round(cw * ratio);
+    const cap = document.createElement('canvas');
+    cap.width = cw; cap.height = ch;
+    const cx = cap.getContext('2d');
+
+    const seek = function (t) {
+      return new Promise(function (res) {
+        let done = false;
+        const fin = function () { if (done) return; done = true; res(); };
+        v.addEventListener('seeked', function () {
+          if (typeof v.requestVideoFrameCallback === 'function') {
+            v.requestVideoFrameCallback(function () { fin(); });
+            setTimeout(fin, 200);
+          } else {
+            requestAnimationFrame(function () { requestAnimationFrame(fin); });
+          }
+        }, { once: true });
+        try { v.currentTime = t; } catch (e) { fin(); }
+        setTimeout(fin, 900);
+      });
+    };
+
+    const grab = async () => {
+      cx.drawImage(v, 0, 0, cw, ch);
+      if (typeof createImageBitmap === 'function') return await createImageBitmap(cap);
+      const img = new Image();
+      img.src = cap.toDataURL('image/jpeg', 0.85);
+      return img;
+    };
+
+    // pass 1 — coarse, so scrolling responds almost immediately
+    const COARSE = 14;
+    for (let i = 0; i < COARSE; i++) {
+      await seek((i / (COARSE - 1)) * (dur - 0.05));
+      try { this.frames.push(await grab()); } catch (e) {}
+      this.N = this.frames.length;
+      if (this.N === 2) { this.ready = true; this.hideLoader(); this.startLoop(); }
+    }
+    this.ready = this.N > 0;
+    this.hideLoader();
+    this.startLoop();
+
+    // pass 2 — full detail, swapped in only once complete
+    const full = [];
+    for (let i = 0; i < N; i++) {
+      await seek((i / (N - 1)) * (dur - 0.05));
+      try { full.push(await grab()); } catch (e) {}
+    }
+    if (full.length > this.frames.length) {
+      this.frames = full;
+      this.N = full.length;
+      this.lastIdx = -1;
+    }
+    this.startLoop();
+  }
+
+  startLoop() {
+    this.ensureLoop();
+  }
+
+  ensureLoop() {
+    if (this.raf) return;
+    const self = this;
+    const step = function () {
+      try {
+      const diff = self.targetP - self.progress;
+      if (Math.abs(diff) < 0.0005) {
+        self.progress = self.targetP;
+      } else {
+        self.progress += diff * 0.6;
+      }
+      self.paintFrame();
+      } catch (e) { if (!window.__qvLoopWarn) { window.__qvLoopWarn = 1; console.warn('scrub loop:', e); } }
+      self.raf = requestAnimationFrame(step);
+    };
+    this.raf = requestAnimationFrame(step);
+  }
+
+  paintFrame() {
+    const p = this.progress;
+    if (this.ready && this.N > 0) {
+      const fp = Math.min(1, p / 0.98);
+      const idx = Math.round(fp * (this.N - 1));
+      if (idx !== this.lastIdx) { this.lastIdx = idx; this.draw(idx); }
+    }
+    this.updateScenes(p);
+  }
+
+  updateScenes(p) {
+    if (this.scenesChecked && !this.scenes.length) return;
+    if (!this.scenes || !this.scenes.length) {
+      const root = this.driverRef.current;
+      if (!root) return;
+      this.scenes = Array.from(root.querySelectorAll('.scene'));
+      this.scenesChecked = true;
+      if (!this.scenes.length) return;
+    }
+    const hold = 0.07, fade = 0.012;
+    for (let i = 0; i < this.scenes.length; i++) {
+      const el = this.scenes[i];
+      const c = parseFloat(el.dataset.center);
+      const d = Math.abs(p - c);
+      let o = (hold + fade - d) / fade;
+      o = o < 0 ? 0 : (o > 1 ? 1 : o);
+      el.style.opacity = o.toFixed(3);
+      let dy = (c - p) * 240;
+      dy = dy < -46 ? -46 : (dy > 46 ? 46 : dy);
+      el.style.transform = 'translateY(' + dy.toFixed(1) + 'px)';
+    }
+  }
+
+  draw(idx) {
+    const c = this.canvasRef.current;
+    if (!c || !this.frames.length) return;
+    const f = this.frames[Math.max(0, Math.min(this.frames.length - 1, idx))];
+    if (!f) return;
+    const ctx = c.getContext('2d');
+    const cw = c.width, chh = c.height;
+    const iw = f.width || f.naturalWidth, ih = f.height || f.naturalHeight;
+    if (!iw || !ih) return;
+    const s = Math.max(cw / iw, chh / ih);
+    const dw = iw * s, dh = ih * s;
+    ctx.drawImage(f, (cw - dw) / 2, (chh - dh) / 2, dw, dh);
+  }
+
+  onScroll() {
+    const d = this.driverRef.current;
+    if (!d) return;
+    const rect = d.getBoundingClientRect();
+    const span = rect.height - window.innerHeight;
+    const p = span > 0 ? (-rect.top) / span : 0;
+    this.targetP = Math.max(0, Math.min(1, p));
+
+    // Hard-lock: don't let the user past the intro until the scrub has
+    // visually finished (smoothed progress caught up to the end).
+    if (span > 0 && !this.ready && this.progress < 0.999 && rect.top < -span) {
+      window.scrollTo(0, window.scrollY + (rect.top + span));
+      this.targetP = 1;
+    }
+
+    this.ensureLoop();
+    if (this._lottieFrame) this._lottieFrame();
+  }
+
+  onResize() {
+    this.resizeCanvas();
+    this.lastIdx = -1;
+    this.ensureLoop();
+  }
+
+  resizeCanvas() {
+    const c = this.canvasRef.current;
+    if (!c) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = c.clientWidth || window.innerWidth;
+    const h = c.clientHeight || window.innerHeight;
+    c.width = Math.round(w * dpr);
+    c.height = Math.round(h * dpr);
+  }
+
+  hideLoader() {
+    const el = this.loaderRef.current;
+    if (!el || el.dataset.hidden) return;
+    el.dataset.hidden = '1';
+    el.style.opacity = '0';
+    setTimeout(function () { el.style.display = 'none'; }, 650);
+  }
+
+  // shared Features / Grid chrome: intro curtain, progress rule, HUD, dot rail, reveal-on-enter
+  initChrome() {
+    const c01 = v => Math.max(0, Math.min(1, v));
+    const ease = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+    const draw = () => {
+      const vh = window.innerHeight;
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      const max = Math.max(1, (document.documentElement.scrollHeight || 0) - vh);
+      const pct = c01(y / max);
+      if (this.hudPctRef.current) this.hudPctRef.current.textContent = String(Math.round(pct * 100)).padStart(3, '0');
+
+      const secs = Array.prototype.slice.call(document.querySelectorAll('section[data-screen-label]'));
+      let cur = secs[0];
+      secs.forEach(sec => { if (sec.getBoundingClientRect().top <= vh * 0.4) cur = sec; });
+      if (cur) {
+        if (this.railRef.current) {
+          const ai = secs.indexOf(cur);
+          this.railRef.current.querySelectorAll('[data-dot]').forEach((d, i) => {
+            d.style.width = i === ai ? '40px' : '22px';
+            d.style.background = i === ai ? 'rgb(255,255,255)' : 'rgba(120,120,120,0.9)';
+            d.style.transition = 'width 0.4s cubic-bezier(0.16,1,0.3,1), background 0.4s linear';
+          });
+        }
+      }
+
+      document.querySelectorAll('[data-rv]').forEach(el => {
+        const r = el.getBoundingClientRect();
+        const p = ease(c01((vh - r.top) / (vh * 0.42)));
+        el.style.opacity = p.toFixed(3);
+        el.style.transform = 'translateY(' + ((1 - p) * 40).toFixed(1) + 'px)';
+      });
+    };
+    let chromeQueued = false;
+    const onChrome = function () {
+      if (chromeQueued) return;
+      chromeQueued = true;
+      requestAnimationFrame(function () { chromeQueued = false; draw(); });
+    };
+    window.addEventListener('scroll', onChrome, { passive: true });
+    window.addEventListener('resize', onChrome, { passive: true });
+    onChrome();
+    draw();
+  }
+
+  initReverse() {
+    const self = this;
+    if (!document.querySelector('.rv-fg')) { setTimeout(function () { self.initReverse(); }, 80); return; }
+    if (this._rvOn) return;
+    this._rvOn = true;
+    const c01 = v => Math.max(0, Math.min(1, v));
+    const seg = (p, a, b) => c01((p - a) / (b - a));
+    const io = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+    const mix = (a, b, t) => a + (b - a) * t;
+
+    const draw = function () {
+      const fg = document.querySelector('.rv-fg');
+      if (!fg) return;
+      const section = fg.closest('section');
+      const r = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+      if (r.bottom < 0 || r.top > vh) return;
+      const p = c01(-r.top / Math.max(1, r.height - vh));
+      if (window.__qvRvP !== undefined && Math.abs(window.__qvRvP - p) < 0.0004) return;
+      window.__qvRvP = p;
+
+      // reverse of the hero outro: panels open, blade scales in, rotates upright, slit widens
+      const open = io(seg(p, 0, 0.16));
+      const grow = io(seg(p, 0.16, 0.4));
+      const rot = mix(65, 0, io(seg(p, 0.4, 0.66)));
+      const slit = io(seg(p, 0.66, 0.99));
+
+      const rs = document.documentElement.style;
+      rs.setProperty('--rv-pt', (100 - 100 * open).toFixed(2) + '%');
+      rs.setProperty('--rv-pb', (100 * open).toFixed(2) + '%');
+      rs.setProperty('--rv-sc', grow.toFixed(4));
+      rs.setProperty('--rv-rot', rot.toFixed(2) + 'deg');
+      rs.setProperty('--rv-l', mix(48, 0, slit).toFixed(2) + '%');
+      rs.setProperty('--rv-r', mix(52, 100, slit).toFixed(2) + '%');
+      rs.setProperty('--rv-dark', (1 - slit).toFixed(3));
+      const wfade = io(seg(p, 0.88, 1));
+      rs.setProperty('--rv-white', wfade.toFixed(3));
+      const tv = Math.round(mix(244, 10, wfade));
+      rs.setProperty('--rv-txt', 'rgb(' + tv + ',' + tv + ',' + tv + ')');
+      rs.setProperty('--rv-acc', (1 - io(seg(p, 0.21, 0.52))).toFixed(3));
+    };
+
+    let rvQueued = false;
+    const onSc = function () {
+      if (rvQueued) return;
+      rvQueued = true;
+      requestAnimationFrame(function () {
+        rvQueued = false;
+        try { draw(); } catch (e) { if (!window.__qvRvWarn) { window.__qvRvWarn = 1; console.warn('reverse reveal error:', e); } }
+      });
+    };
+    onSc();
+    window.addEventListener('scroll', onSc, { passive: true });
+    window.addEventListener('resize', onSc);
+    onSc();
+  }
+
+  initWork() {
+    const self = this;
+    const tryInit = function () {
+      if (self._workStarted) return;
+      if (!window.gsap || !window.ScrollTrigger || !window.THREE || !self.workRef.current) { setTimeout(tryInit, 60); return; }
+      self._workStarted = true;
+      self.runWork();
+    };
+    tryInit();
+  }
+
+  runWork() {
+    const gsap = window.gsap;
+    const ScrollTrigger = window.ScrollTrigger;
+    const THREE = window.THREE;
+    gsap.registerPlugin(ScrollTrigger);
+
+    // resolve from the live document: the ref can point at a detached node after re-render
+    const workSection = document.querySelector('.qv-work') || this.workRef.current;
+    if (!workSection || !workSection.isConnected) { const s2 = this; setTimeout(function () { s2._workStarted = false; s2.initWork(); }, 120); return; }
+
+    // a killed trigger can leave its pin-spacer behind: unwrap before re-pinning
+    const spacer = workSection.parentElement;
+    if (spacer && spacer.classList && spacer.classList.contains('pin-spacer')) {
+      spacer.parentNode.insertBefore(workSection, spacer);
+      spacer.remove();
+      workSection.style.cssText = 'position: relative; width: 100%; height: 800vh; background-color: #f4f4f1;';
+    }
+
+    // Build the whole experience inside ONE mount div; React owns workSection
+    // and will wipe its children on re-render, so we re-attach mount each frame.
+    const mount = document.createElement('div');
+    mount.style.cssText = 'position:sticky; top:0; width:100%; height:100vh; overflow:hidden;';
+    Array.prototype.slice.call(workSection.children).forEach(function (c) { c.remove(); });
+    workSection.appendChild(mount);
+
+    const cardsData = [
+      ['assets/panel1-vending.png', 'Eclipse Horizon', '739284'],
+      ['assets/panel2-gymfloor.png', 'Vision Link', '385912'],
+      ['assets/panel3-energize.png', 'Iron Bond', '621478'],
+      ['assets/panel4-machine.png', 'Golden Case', '839251'],
+      ['assets/panel1-vending.png', 'Virtual Space', '456732'],
+      ['assets/panel2-gymfloor.png', 'Smart Vision', '974315'],
+      ['assets/panel3-energize.png', 'Desert Tunnel', '682943'],
+    ];
+    const cardsContainer = document.createElement('div');
+    cardsContainer.className = 'qv-cards';
+    cardsContainer.style.cssText = 'position:relative; width:500vw; height:100vh; padding-left:100vw; overflow:hidden; display:flex; justify-content:space-around; align-items:center; z-index:10;';
+    cardsData.forEach(([src, title, num]) => {
+      const card = document.createElement('div');
+      card.style.cssText = 'width:10%; height:50%; padding:0.5rem; background-color:#0a0a0a; display:flex; flex-direction:column; gap:0.5rem;';
+      const imgWrap = document.createElement('div');
+      imgWrap.style.cssText = 'flex:1; overflow:hidden;';
+      const img = document.createElement('img');
+      img.src = src;
+      img.style.cssText = 'width:100%; height:100%; object-fit:cover;';
+      imgWrap.appendChild(img);
+      const copy = document.createElement('div');
+      copy.style.cssText = 'height:0.75rem; display:flex; justify-content:space-between; align-items:center; padding:0 0.25rem; text-transform:uppercase; font-size:0.75rem; color:#e8702a;';
+      const p1 = document.createElement('p'); p1.textContent = title;
+      const p2 = document.createElement('p'); p2.textContent = num;
+      copy.appendChild(p1); copy.appendChild(p2);
+      card.appendChild(imgWrap); card.appendChild(copy);
+      cardsContainer.appendChild(card);
+    });
+
+    const moveDistance = window.innerWidth * 5;
+    let currentXPosition = 0;
+    const lerp = (start, end, t) => start + (end - start) * t;
+
+    const gridCanvas = document.createElement('canvas');
+    gridCanvas.id = 'qv-grid-canvas';
+    mount.appendChild(gridCanvas);
+    const gridCtx = gridCanvas.getContext('2d');
+    let lastGridOffset = -1;
+    const resizeGridCanvas = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      gridCanvas.width = window.innerWidth * dpr;
+      gridCanvas.height = window.innerHeight * dpr;
+      gridCanvas.style.width = window.innerWidth + 'px';
+      gridCanvas.style.height = window.innerHeight + 'px';
+      lastGridOffset = -1;
+      gridCtx.setTransform(1, 0, 0, 1, 0, 0);
+      gridCtx.scale(dpr, dpr);
+    };
+    resizeGridCanvas();
+    const spacing = 30, dotSize = 1;
+    const dotTile = document.createElement('canvas');
+    dotTile.width = spacing; dotTile.height = spacing;
+    const dctx = dotTile.getContext('2d');
+    dctx.fillStyle = 'rgba(10,10,10,0.14)';
+    dctx.beginPath(); dctx.arc(0, 0, dotSize, 0, Math.PI * 2); dctx.fill();
+    dctx.beginPath(); dctx.arc(spacing, 0, dotSize, 0, Math.PI * 2); dctx.fill();
+    dctx.beginPath(); dctx.arc(0, spacing, dotSize, 0, Math.PI * 2); dctx.fill();
+    dctx.beginPath(); dctx.arc(spacing, spacing, dotSize, 0, Math.PI * 2); dctx.fill();
+    const dotPattern = gridCtx.createPattern(dotTile, 'repeat');
+    const drawGrid = (scrollProgress = 0) => {
+      const offset = Math.round((scrollProgress * spacing * 10) % spacing);
+      if (offset === lastGridOffset) return;
+      lastGridOffset = offset;
+      const w = window.innerWidth, h = window.innerHeight;
+      gridCtx.fillStyle = '#f4f4f1';
+      gridCtx.fillRect(0, 0, w, h);
+      gridCtx.save();
+      gridCtx.translate(-offset, 0);
+      gridCtx.fillStyle = dotPattern;
+      gridCtx.fillRect(0, 0, w + spacing, h);
+      gridCtx.restore();
+    };
+
+    const lettersScene = new THREE.Scene();
+    const lettersCamera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1e3);
+    lettersCamera.position.z = 20;
+    const lettersRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    lettersRenderer.setSize(window.innerWidth, window.innerHeight);
+    lettersRenderer.setClearColor(0, 0);
+    lettersRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    lettersRenderer.domElement.id = 'qv-letters-canvas';
+    mount.appendChild(lettersRenderer.domElement);
+
+    const createTextAnimationPath = (yPos, amplitude) => {
+      const points = [];
+      for (let i = 0; i <= 20; i++) {
+        const t = i / 20;
+        points.push(new THREE.Vector3(-25 + 50 * t, yPos + Math.sin(t * Math.PI) * -amplitude, (1 - Math.pow(Math.abs(t - 0.5) * 2, 2)) * -5));
+      }
+      const curve = new THREE.CatmullRomCurve3(points);
+      const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(100)), new THREE.LineBasicMaterial({ color: 0, linewidth: 1 }));
+      line.curve = curve;
+      return line;
+    };
+    const path = [
+      createTextAnimationPath(10, 2),
+      createTextAnimationPath(3.5, 1),
+      createTextAnimationPath(-3.5, -1),
+      createTextAnimationPath(-10, -2),
+    ];
+    path.forEach(line => lettersScene.add(line));
+
+    const textContainer = document.createElement('div');
+    textContainer.className = 'qv-text-container';
+    textContainer.style.cssText = 'width:100%; height:100%; position:absolute; top:0; left:0; z-index:2; pointer-events:none; perspective:156.25rem; perspective-origin:center;';
+    mount.appendChild(textContainer);
+    mount.appendChild(cardsContainer);
+    const letterPositions = new Map();
+    const word = 'COMMUNITY ';
+    path.forEach((line, i) => {
+      line.letterElements = Array.from({ length: 20 }, (_, idx) => {
+        const el = document.createElement('div');
+        el.className = 'qv-letter';
+        el.textContent = word[idx % word.length];
+        textContainer.appendChild(el);
+        letterPositions.set(el, { current: { x: 0, y: 0 }, target: { x: 0, y: 0 } });
+        return el;
+      });
+    });
+    const lineSpeedMultipliers = [0.8, 1, 0.7, 0.9];
+    const updateTargetPositions = (scrollProgress = 0) => {
+      path.forEach((line, lineIndex) => {
+        line.letterElements.forEach((element, i) => {
+          const point = line.curve.getPoint((i / 19 + scrollProgress * lineSpeedMultipliers[lineIndex]) % 1);
+          const vector = point.clone().project(lettersCamera);
+          const positions = letterPositions.get(element);
+          positions.target = {
+            x: (vector.x * 0.5 + 0.5) * window.innerWidth,
+            y: (-vector.y * 0.5 + 0.5) * window.innerHeight,
+          };
+        });
+      });
+    };
+    const workProgress = () => {
+      const r = workSection.getBoundingClientRect();
+      return Math.max(0, Math.min(1, -r.top / Math.max(1, r.height - window.innerHeight)));
+    };
+    const entry = () => {
+      const wp = workProgress();
+      const t = Math.max(0, Math.min(1, wp / 0.18));
+      return 1 - (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+    };
+    const collapse = () => {
+      const wp = workProgress();
+      const t = Math.max(0, Math.min(1, (wp - 0.74) / 0.26));
+      return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+    };
+    const updateLetterPositions = () => {
+      letterPositions.forEach((positions, element) => {
+        const distX = positions.target.x - positions.current.x;
+        if (Math.abs(distX) > window.innerWidth * 0.7) {
+          positions.current.x = positions.target.x;
+          positions.current.y = positions.target.y;
+        } else {
+          positions.current.x = lerp(positions.current.x, positions.target.x, 0.07);
+          positions.current.y = lerp(positions.current.y, positions.target.y, 0.07);
+        }
+        if (!element.__s) element.__s = { x: Math.random() * 2 - 1, y: Math.random() * 2 - 1, r: Math.random() * 2 - 1 };
+        const k = collapse();
+        const inn = entry();
+        let X = positions.current.x, Y = positions.current.y, rot = 0, sc = 1;
+        if (inn > 0) {
+          const s = element.__s;
+          const ang = (s.x + s.y) * Math.PI;
+          const dist = (0.7 + Math.abs(s.r) * 0.8) * Math.max(window.innerWidth, window.innerHeight);
+          X = X + Math.cos(ang) * dist * inn;
+          Y = Y + Math.sin(ang) * dist * inn;
+          rot = s.r * 140 * inn;
+          sc = 1 - 0.8 * inn;
+        }
+        if (k > 0) {
+          const s = element.__s;
+          const cx = window.innerWidth * 0.5 + s.x * window.innerWidth * 0.06;
+          const cy = window.innerHeight * 0.58 + s.y * window.innerHeight * 0.05;
+          const e = k * k;
+          X = X + (cx - X) * e;
+          Y = Y + (cy - Y) * e;
+          rot = s.r * 90 * e;
+          sc = 1 - 0.45 * e;
+        }
+        element.style.transform = 'translate(-50%, -50%) translate3d(' + X + 'px, ' + Y + 'px, 0px) rotate(' + rot.toFixed(2) + 'deg) scale(' + sc.toFixed(3) + ')';
+      });
+    };
+    const updateCardsPosition = () => {
+      const targetX = -moveDistance * workProgress();
+      currentXPosition = lerp(currentXPosition, targetX, 0.07);
+      gsap.set(cardsContainer, { x: currentXPosition });
+    };
+    const animate = () => {
+      if (self._dead) return;
+      try {
+        if (!mount.isConnected) {
+          const host = self.workRef.current;
+          if (host) host.appendChild(mount);
+        }
+        const wr = workSection.getBoundingClientRect();
+        const vh = window.innerHeight;
+        if (wr.bottom < -vh * 0.5 || wr.top > vh * 1.5) { requestAnimationFrame(animate); return; }
+        const wp = workProgress();
+        updateTargetPositions(wp);
+        drawGrid(wp);
+        updateLetterPositions();
+        updateCardsPosition();
+        lettersRenderer.render(lettersScene, lettersCamera);
+      } catch(e){}
+      requestAnimationFrame(animate);
+    };
+    const self = this;
+    drawGrid(0);
+    animate();
+    setTimeout(function () { try { ScrollTrigger.refresh(); } catch (e) {} }, 400);
+    updateTargetPositions(0);
+    window.addEventListener('resize', () => {
+      resizeGridCanvas();
+      drawGrid(workProgress());
+      lettersCamera.aspect = window.innerWidth / window.innerHeight;
+      lettersCamera.updateProjectionMatrix();
+      lettersRenderer.setSize(window.innerWidth, window.innerHeight);
+      updateTargetPositions(workProgress());
+    });
+  }
+
+  initVoyeur() {
+    const self = this;
+    const load = function (src) {
+      return new Promise(function (res, rej) {
+        var s = document.createElement('script');
+        s.src = src; s.onload = res; s.onerror = rej;
+        document.head.appendChild(s);
+      });
+    };
+    (async function () {
+      if (!window.gsap) await load('https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js');
+      if (!window.ScrollTrigger) await load('https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js');
+      if (!window.SplitText) await load('https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js');
+      if (self._dead) return;
+      self.buildVoyeur();
+    })().catch(function (e) { console.warn('Voyeur experience failed to load:', e); });
+  }
+
+  buildVoyeur() {
+    const gsap = window.gsap;
+    const ScrollTrigger = window.ScrollTrigger;
+    const SplitText = window.SplitText;
+    gsap.registerPlugin(ScrollTrigger, SplitText);
+    this._ST = ScrollTrigger;
+
+    const hero = document.querySelector('[vv-hero]');
+    if (!hero) return;
+    const fgContent = hero.querySelector('.vv-fg-content');
+    const fgOverlayDark = hero.querySelector('.vv-fg-overlay-dark');
+    const fgOverlayAccent = hero.querySelector('.vv-fg-overlay');
+    const copies = hero.querySelectorAll('.vv-bg-copy');
+    const bgCopyLeft = copies[0];
+    const bgCopyRight = copies[1];
+    const outroImgs = hero.querySelectorAll('.vv-outro-img');
+    const outroImgTop = outroImgs[0];
+    const outroImgBottom = outroImgs[1];
+
+    const outroHeaderSplit = new SplitText('.vv-outro-header h3', { type: 'lines', mask: 'lines', linesClass: 'line' });
+    gsap.set(outroHeaderSplit.lines, { y: '100%' });
+    let areOutroLinesRevealed = false;
+
+    ScrollTrigger.create({
+      trigger: hero,
+      start: 'top top',
+      end: function () { return '+=' + (window.innerHeight * 3.2); },
+      pin: true,
+      pinSpacing: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      fastScrollEnd: true,
+      onUpdate: function (st) {
+        const scrollProgress = st.progress;
+
+        const phase1Progress = gsap.utils.clamp(0, 1, scrollProgress / 0.25);
+        const slitLeftEdge = gsap.utils.interpolate(0, 48, phase1Progress);
+        const slitRightEdge = gsap.utils.interpolate(100, 52, phase1Progress);
+        gsap.set(fgContent, { clipPath: 'polygon(' + slitLeftEdge + '% 0%, ' + slitRightEdge + '% 0%, ' + slitRightEdge + '% 100%, ' + slitLeftEdge + '% 100%)' });
+
+        const darkOverlayOpacity = gsap.utils.interpolate(0, 1, phase1Progress);
+        gsap.set(fgOverlayDark, { opacity: darkOverlayOpacity });
+
+        const phase2Progress = gsap.utils.clamp(0, 1, (scrollProgress - 0.25) / 0.2);
+        const fgRotation = gsap.utils.interpolate(0, 65, phase2Progress);
+        gsap.set(fgContent, { rotate: fgRotation });
+
+        const phase3Progress = gsap.utils.clamp(0, 1, (scrollProgress - 0.45) / 0.2);
+        const fgScale = gsap.utils.interpolate(1, 0, phase3Progress);
+        gsap.set(fgContent, { scale: fgScale });
+
+        const bgCopyLeftX = gsap.utils.interpolate(0, 100, phase3Progress);
+        const bgCopyRightX = gsap.utils.interpolate(0, -100, phase3Progress);
+        gsap.set(bgCopyLeft, { x: bgCopyLeftX + '%' });
+        gsap.set(bgCopyRight, { x: bgCopyRightX + '%' });
+
+        const phase3OverlayProgress = gsap.utils.clamp(0, 1, (scrollProgress - 0.45) / 0.05);
+        const redOverlayOpacity = gsap.utils.interpolate(0, 1, phase3OverlayProgress);
+        gsap.set(fgOverlayAccent, { opacity: redOverlayOpacity });
+
+        const phase4Progress = gsap.utils.clamp(0, 1, (scrollProgress - 0.62) / 0.26);
+        const topImgBottomEdge = gsap.utils.interpolate(0, 100, phase4Progress);
+        gsap.set(outroImgTop, { clipPath: 'polygon(0% 0%, 100% 0%, 100% ' + topImgBottomEdge + '%, 0% ' + topImgBottomEdge + '%)' });
+        const bottomImgTopEdge = gsap.utils.interpolate(100, 0, phase4Progress);
+        gsap.set(outroImgBottom, { clipPath: 'polygon(0% ' + bottomImgTopEdge + '%, 100% ' + bottomImgTopEdge + '%, 100% 100%, 0% 100%)' });
+
+        if (scrollProgress >= 0.9 && !areOutroLinesRevealed) {
+          areOutroLinesRevealed = true;
+          gsap.to(outroHeaderSplit.lines, { y: '0%', duration: 0.75, stagger: 0.1, ease: 'power3.out' });
+        } else if (scrollProgress < 0.9 && areOutroLinesRevealed) {
+          areOutroLinesRevealed = false;
+          gsap.to(outroHeaderSplit.lines, { y: '100%', duration: 0.25, stagger: -0.05, ease: 'power3.out' });
+        }
+      },
+    });
+    ScrollTrigger.refresh();
+
+    // ScrollTrigger already updates on scroll; a per-frame update() loop only burns frames
+  }
+
+  componentWillUnmount() {
+    if (this._blobUrl) { URL.revokeObjectURL(this._blobUrl); this._blobUrl = null; }
+    if (this._durWait) clearInterval(this._durWait);
+    if (this._iv) clearInterval(this._iv);
+    if (this._beginTimer) clearTimeout(this._beginTimer);
+    if (this._fallbackTimer) clearTimeout(this._fallbackTimer);
+    if (this.raf) cancelAnimationFrame(this.raf);
+    clearInterval(this._introIv);
+    clearTimeout(this._introT1);
+    clearTimeout(this._introT2);
+    clearInterval(this._chromeIv);
+    this._dead = true;
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize);
+    if (this._cleanup) this._cleanup();
+    clearTimeout(this._beginTimer);
+    if (this.raf) cancelAnimationFrame(this.raf);
+    if (this._voyeurRaf) cancelAnimationFrame(this._voyeurRaf);
+    this.frames.forEach(function (f) { if (f && f.close) f.close(); });
+  }
+
+  renderVals() {
+    return {
+      driverRef: this.driverRef,
+      videoRef: this.videoRef,
+      workRef: this.workRef,
+      rvRef: this.rvRef,
+      loadRef: this.loadRef,
+      loadTopRef: this.loadTopRef,
+      loadBotRef: this.loadBotRef,
+      loadNumRef: this.loadNumRef,
+      railRef: this.railRef,
+      hudIdxRef: this.hudIdxRef,
+      hudLabelRef: this.hudLabelRef,
+      hudPctRef: this.hudPctRef,
+      progRef: this.progRef,
+      canvasRef: this.canvasRef,
+      loaderRef: this.loaderRef,
+    };
+  }
+}
+</script>
+</body>
+</html>

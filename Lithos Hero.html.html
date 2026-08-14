@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@1,400;1,500;1,600&amp;display=swap" rel="stylesheet" referrerpolicy="no-referrer">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" referrerpolicy="no-referrer">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  * { font-family: 'PP Neue Montreal', 'Archivo', sans-serif; }
+  body { margin: 0; background: #f4f4f1; }
+  a { color: #e8702a; text-decoration: none; }
+  a:hover { color: #d2611f; }
+  .font-playfair { font-family: 'PP Neue Montreal', 'Archivo', sans-serif; font-style: normal; font-weight: 700; letter-spacing: -0.03em; }
+
+  @keyframes heroReveal { 0%{opacity:0;transform:translateY(28px);filter:blur(12px)} 100%{opacity:1;transform:translateY(0);filter:blur(0)} }
+  @keyframes heroFadeUp { 0%{opacity:0;transform:translateY(20px)} 100%{opacity:1;transform:translateY(0)} }
+  @keyframes heroZoom { 0%{transform:scale(1.12)} 100%{transform:scale(1)} }
+  @keyframes wordCycle {
+    0%   { opacity:0; transform:translateY(18px); filter:blur(6px); }
+    5%   { opacity:1; transform:translateY(0);    filter:blur(0); }
+    22%  { opacity:1; transform:translateY(0);    filter:blur(0); }
+    27%  { opacity:0; transform:translateY(-18px); filter:blur(6px); }
+    100% { opacity:0; transform:translateY(-18px); filter:blur(6px); }
+  }
+  .word-cycle span { animation: wordCycle 8s cubic-bezier(0.16,1,0.3,1) infinite; }
+  @keyframes wordRipple {
+    0%   { opacity: 0.12; transform: scale(0.92); }
+    50%  { opacity: 1;    transform: scale(1.05); }
+    100% { opacity: 0.12; transform: scale(0.92); }
+  }
+  @keyframes tgIn { 0%{opacity:0;transform:translateY(22px);filter:blur(8px)} 100%{opacity:1;transform:translateY(0);filter:blur(0)} }
+  @keyframes tgOut { 0%{opacity:1} 100%{opacity:0} }
+  .tg-line { animation: tgIn 1.1s cubic-bezier(0.16,1,0.3,1) both; }
+  .intro-screen { position: fixed; inset: 0; z-index: 200; background: #000; display: flex; align-items: center; justify-content: center; overflow: hidden; opacity: 1; transition: opacity 0.85s cubic-bezier(0.7,0,0.84,0); }
+  .intro-screen.intro-over { opacity: 0; pointer-events: none; }
+  .hero-anim { opacity:0; animation-fill-mode:forwards; animation-timing-function:cubic-bezier(0.16,1,0.3,1); }
+  .revealed .hero-reveal { animation-name:heroReveal; animation-duration:1.1s; }
+  .revealed .hero-fade { animation-name:heroFadeUp; animation-duration:1s; }
+  .hero-zoom { animation:heroZoom 1.8s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .pre-reveal nav, .pre-reveal .hero-anim { pointer-events:none; }
+  .pre-reveal .hero-anim { opacity:0 !important; }
+  @media (prefers-reduced-motion: reduce){
+    .hero-zoom{ animation:none; }
+    .revealed .hero-anim{ opacity:1; animation:none; }
+  }
+  @keyframes fx-vline { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+</style>
+</helmet>
+<div class="min-h-screen bg-[#f4f4f1] tracking-[-0.02em] {{ stageClass }}" style="font-family: 'PP Neue Montreal', 'Archivo', sans-serif;">
+
+  <nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: #f4f4f1; border-bottom: 1px solid rgba(10,10,10,0.16);">
+    <div style="display: grid; grid-template-columns: repeat(12, 1fr); align-items: center; height: 52px; padding: 0 2vw; gap: 0;">
+      <a href="Lithos%20Hero.dc.html" style="grid-column: span 3; display: flex; align-items: center; gap: 10px; color: #0a0a0a; text-decoration: none;">
+        <svg width="16" height="16" viewBox="0 0 256 256" fill="#0a0a0a"><path d="M 256 256 L 128 256 L 0 128 L 128 128 Z M 256 128 L 128 128 L 0 0 L 128 0 Z"></path></svg>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;">Quanta</span>
+      </a>
+      <div style="grid-column: span 6; display: flex; justify-content: center; gap: 28px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;">
+        <a href="Benefits.dc.html" style="color: #0a0a0a; text-decoration: none;">Benefits</a>
+        <a href="Features%203.dc.html" style="color: #0a0a0a; text-decoration: none;">Features</a>
+      </div>
+      <div style="grid-column: span 3; display: flex; justify-content: flex-end; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;">
+        <a href="Contact.dc.html" style="display: inline-flex; align-items: center; white-space: nowrap; border: 1px solid rgba(10,10,10,0.3); padding: 7px 14px; color: #0a0a0a; text-decoration: none;" style-hover="background: #0a0a0a; color: #f4f4f1;">Start My Strategy</a>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <div class="intro-screen {{ introClass }} px-6">
+    {{ taglineGroup }}
+  </div>
+
+
+
+  <div ref="{{ driverRef }}" class="relative bg-black" style="height: 1500vh;">
+   <div class="sticky top-0 overflow-hidden bg-black" style="height: 100dvh;">
+
+  <section class="relative w-full overflow-hidden bg-black" style="height: 100dvh;">
+
+    <video ref="{{ videoRef }}" src="assets/lithos-clip-3.mp4" muted="" playsinline="" preload="auto" class="absolute inset-0 w-full h-full object-cover z-10 hero-zoom"></video>
+    <div class="absolute inset-0 z-20 bg-black/20 pointer-events-none"></div>
+
+    <div class="absolute top-[42%] -translate-y-1/2 left-10 md:left-14 right-5 sm:right-auto flex flex-col items-start text-left max-w-[560px] pointer-events-none z-50">
+      <h1 class="text-white leading-[0.95]">
+        <span class="block font-playfair font-normal text-5xl sm:text-6xl md:text-7xl hero-anim hero-reveal" style="letter-spacing: -0.05em; animation-delay: 0.25s; font-size: 62px">Your members</span>
+        <span class="block font-playfair font-normal text-5xl sm:text-6xl md:text-7xl -mt-1 hero-anim hero-reveal" style="letter-spacing: -0.05em; animation-delay: 0.38s; font-size: 62px">get what they</span>
+        <span class="block font-normal text-6xl sm:text-7xl md:text-8xl -mt-1 hero-anim hero-reveal" style="letter-spacing: -0.08em; animation-delay: 0.52s;">NEED</span>
+      </h1>
+    </div>
+
+    <div class="hidden md:flex absolute top-1/2 -translate-y-1/2 right-6 md:right-10 lg:right-14 flex-col items-end text-right z-50 pointer-events-none">
+      
+    </div>
+
+    <div class="hidden sm:block absolute bottom-8 left-10 md:left-14 max-w-[260px] z-50 hero-anim hero-fade" style="animation-delay: 0.7s;">
+      <p class="text-sm text-white/80 leading-relaxed" style="width: 244px; height: 157px">Every machine tells a story of convenience, from fresh protein shakes to seamless payments, transforming every gym visit into a better experience.</p>
+    </div>
+
+  </section>
+
+    <!-- Rising panel: driven by scroll progress over the hero, with a rounded top edge -->
+    <div ref="{{ panelRef }}" class="absolute inset-0 z-[60] overflow-hidden" style="transform: translateY(100%); border-top-left-radius: 44px; border-top-right-radius: 44px; box-shadow: 0 -24px 60px rgba(0,0,0,0.55); background: #000;">
+      <!-- Scroll-scrubbed video background (attach source later). Black for now. -->
+      <div class="absolute inset-0" style="background: #000;"></div>
+      <video ref="{{ scrubRef }}" src="assets/panel-bg.mp4" muted="" playsinline="" preload="metadata" class="absolute inset-0 w-full h-full object-cover"></video>
+      <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.6) 42%, rgba(0,0,0,0.12) 100%);"></div>
+
+      <!-- Left manifesto: scroll-driven drum with keyword highlights, depth blur and opacity -->
+      <div ref="{{ manifestoWrapRef }}" class="absolute left-8 md:left-16 top-0 h-full flex items-center z-10 pointer-events-none" style="opacity: 0; transition: opacity 0.6s ease;">
+        <div style="height: 66vh; overflow: hidden; max-width: 460px; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%);">
+          <div ref="{{ manifestoRef }}" class="flex flex-col gap-0" style="will-change: transform;">
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);">Your members deserve <span class="text-white font-semibold">more</span>.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);">Because every <span class="text-white font-semibold">member matters</span>.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);">Every workout deserves <span class="text-white font-semibold">convenience</span>.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);">Keep your members <span class="text-white font-semibold">focused</span>, not searching.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);">Keep your members <span class="text-white font-semibold">inside</span>, where they belong.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);">Give your members <span class="text-white font-semibold">everything they need</span>.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);"><span class="text-white font-semibold">Fresh protein</span>, ready in seconds.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);"><span class="text-white font-semibold">No waiting</span>. No interruptions.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);">Just <span class="text-white font-semibold">tap, pay, and go</span>.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);"><span class="text-white font-semibold">Healthy choices</span>, always within reach.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);">Every visit feels <span class="text-white font-semibold">effortless</span>.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);">Every workout feels <span class="text-white font-semibold">complete</span>.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);">Convenience becomes <span class="text-white font-semibold">loyalty</span>.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);">Loyalty becomes <span class="text-white font-semibold">retention</span>.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);">Retention becomes <span class="text-white font-semibold">growth</span>.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);">Growth becomes <span class="text-white font-semibold">revenue</span>.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);">Every visit creates <span class="text-white font-semibold">value</span>.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);">Every <span class="text-white font-semibold">square foot</span> works harder.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);">Every <span class="text-white font-semibold">second</span> counts.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);">Built for <span class="text-white font-semibold">modern gyms</span>.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);">Powered by <span class="text-white font-semibold">smart automation</span>.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);">Designed for the <span class="text-white font-semibold">future</span>.</p>
+            <p class="text-base md:text-xl font-medium leading-[1.18] tracking-[-0.01em]" style="color: rgba(255,255,255,0.34);">Made to <span class="text-white font-semibold">elevate</span> every experience.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 2: a second full-screen panel rising over the later scroll, rounded top edge -->
+    <div ref="{{ panel2Ref }}" class="absolute inset-0 z-[80] overflow-hidden" style="transform: translateY(100%); border-top-left-radius: 44px; border-top-right-radius: 44px; box-shadow: 0 -24px 60px rgba(0,0,0,0.55); background: #f4f4f1;">
+      <!-- Horizontal page slider: pages slide in from the side as the user scrolls -->
+      <div ref="{{ hTrackRef }}" class="absolute inset-0 flex" style="width: 300vw; will-change: transform;">
+
+        <section class="relative shrink-0 grid grid-cols-3" style="width: 100vw; height: 100%; background: #f4f4f1;">
+          <a href="Benefits.dc.html" class="group relative flex flex-col justify-between items-start px-8 md:px-12 pt-16 pb-10 transition-colors duration-300 hover:bg-black" style="text-decoration: none; color: #0a0a0a; border-right: 1px solid rgba(0,0,0,0.12);">
+            <span class="text-black/40 group-hover:text-white/50 transition-colors duration-300" style="font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase;">01</span>
+            <span class="group-hover:text-white transition-colors duration-300" style="font-weight: 300; text-transform: uppercase; font-size: clamp(40px, 4.6vw, 88px); letter-spacing: 0.01em; line-height: 0.9;">Benefits</span>
+          </a>
+          <a href="Features%203.dc.html" class="group relative flex flex-col justify-between items-start px-8 md:px-12 pt-16 pb-10 transition-colors duration-300 hover:bg-black" style="text-decoration: none; color: #0a0a0a; border-right: 1px solid rgba(0,0,0,0.12);">
+            <span class="text-black/40 group-hover:text-white/50 transition-colors duration-300" style="font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase;">02</span>
+            <span class="group-hover:text-white transition-colors duration-300" style="font-weight: 300; text-transform: uppercase; font-size: clamp(40px, 4.6vw, 88px); letter-spacing: 0.01em; line-height: 0.9;">Features</span>
+          </a>
+          <a href="Strategy.dc.html" class="group relative flex flex-col justify-between items-start px-8 md:px-12 pt-16 pb-10 transition-colors duration-300 hover:bg-black" style="text-decoration: none; color: #0a0a0a;">
+            <span class="text-black/40 group-hover:text-white/50 transition-colors duration-300" style="font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase;">03</span>
+            <span class="group-hover:text-white transition-colors duration-300" style="font-weight: 300; text-transform: uppercase; font-size: clamp(32px, 3.6vw, 68px); letter-spacing: 0.01em; line-height: 0.9;">Start My Strategy</span>
+          </a>
+        </section>
+
+      </div>
+      <div ref="{{ manifesto2WrapRef }}" class="hidden"></div>
+      <div ref="{{ manifesto2Ref }}" class="hidden"></div>
+      <div ref="{{ scrub2Ref }}" class="hidden"></div>
+    </div>
+
+    <!-- Panel 3: a third full-screen panel rising over the final scroll, rounded top edge -->
+    <div ref="{{ panel3Ref }}" class="absolute inset-0 z-[70] overflow-hidden" style="transform: translateY(100%); border-top-left-radius: 44px; border-top-right-radius: 44px; box-shadow: 0 -24px 60px rgba(0,0,0,0.55); background: #000;">
+      <!-- Scroll-scrubbed video background (attach source later). Black for now. -->
+      <div class="absolute inset-0" style="background: #000;"></div>
+      <video ref="{{ scrub3Ref }}" src="assets/panel3-bg.mp4" muted="" playsinline="" preload="metadata" class="absolute inset-0 w-full h-full object-cover"></video>
+      <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.6) 42%, rgba(0,0,0,0.12) 100%);"></div>
+
+      <!-- Left manifesto: scroll-driven drum with keyword highlights, depth blur and opacity -->
+      <div ref="{{ manifesto3WrapRef }}" class="absolute left-8 md:left-16 top-0 h-full flex items-center z-10 pointer-events-none" style="opacity: 0; filter: blur(10px); transform: translateY(26px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), filter 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);">
+        
+      </div>
+    </div>
+
+   </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { cursorX: -999, cursorY: -999, revealed: false, tgIndex: 0, introDone: false };
+    this.heroStarted = false;
+    this.SPOTLIGHT_R = 260;
+    this.mouse = { x: -999, y: -999 };
+    this.smooth = { x: -999, y: -999 };
+    this.rafRef = null;
+    this.canvasRef = React.createRef();
+    this.revealRef = React.createRef();
+    this.videoRef = React.createRef();
+    this.driverRef = React.createRef();
+    this.panelRef = React.createRef();
+    this.scrubRef = React.createRef();
+    this.manifestoRef = React.createRef();
+    this.manifestoWrapRef = React.createRef();
+    this.panel2Ref = React.createRef();
+    this.scrub2Ref = React.createRef();
+    this.manifesto2Ref = React.createRef();
+    this.manifesto2WrapRef = React.createRef();
+    this.hTrackRef = React.createRef();
+    this.panel3Ref = React.createRef();
+    this.scrub3Ref = React.createRef();
+    this.manifesto3Ref = React.createRef();
+    this.manifesto3WrapRef = React.createRef();
+    this.ticking = false;
+    this.applyScroll = this.applyScroll.bind(this);
+    this.scrubReady = false;
+    this.bgComplete = false;
+    this.onMove = this.onMove.bind(this);
+    this.onResize = this.onResize.bind(this);
+    this.loop = this.loop.bind(this);
+  }
+
+  componentDidMount() {
+    const v = this.videoRef.current;
+    if (v) {
+      v.muted = true;
+      // Hold the video during the dark intro sequence; it starts once the lines finish.
+      v.pause();
+      try { v.currentTime = 0; } catch (e) {}
+      // Reveal all overlay content once the intro clip finishes its first play-through,
+      // then loop the video for good.
+      const self = this;
+      this.onEnded = function () {
+        if (!self.state.revealed) self.setState({ revealed: true });
+        v.currentTime = 0;
+        v.play().catch(function () {});
+      };
+      v.addEventListener('ended', this.onEnded);
+      // Safety net: if the 'ended' event is ever missed, reveal shortly after the clip's
+      // real duration has elapsed (never before it).
+      const scheduleFallback = function () {
+        if (!self.heroStarted) return;
+        if (self.revealTimer) clearTimeout(self.revealTimer);
+        const ms = (isFinite(v.duration) && v.duration > 0 ? v.duration : 8) * 1000 + 600;
+        self.revealTimer = setTimeout(function () {
+          if (!self.state.revealed) self.setState({ revealed: true });
+        }, ms);
+      };
+      if (v.readyState >= 1) scheduleFallback();
+      v.addEventListener('loadedmetadata', scheduleFallback);
+      this.onMeta = scheduleFallback;
+      // Keep the clip playing when scrolling away and back, or when the tab regains focus.
+      this.resume = function () { if (self.heroStarted && v.paused) v.play().catch(function () {}); };
+      document.addEventListener('visibilitychange', this.resume);
+      window.addEventListener('focus', this.resume);
+      if ('IntersectionObserver' in window) {
+        this.io = new IntersectionObserver(this.resume);
+        this.io.observe(v);
+      }
+      // Dark intro: keep the screen black while the big lines animate, then start the video.
+      // Lock scrolling so the overlay always covers the viewport during the intro.
+      try { window.scrollTo(0, 0); } catch (e) {}
+      var _htmlEl = document.documentElement, _bodyEl = document.body;
+      var _prevHtmlOv = _htmlEl.style.overflow, _prevBodyOv = _bodyEl.style.overflow;
+      _htmlEl.style.overflow = 'hidden';
+      _bodyEl.style.overflow = 'hidden';
+      this.lockScroll = function () { if (!self.state.introDone) window.scrollTo(0, 0); };
+      window.addEventListener('scroll', this.lockScroll, { passive: true });
+      this.introTimer = setTimeout(function () {
+        self.heroStarted = true;
+        self.setState({ introDone: true });
+        _htmlEl.style.overflow = _prevHtmlOv;
+        _bodyEl.style.overflow = _prevBodyOv;
+        window.removeEventListener('scroll', self.lockScroll);
+        v.play().catch(function () {});
+        scheduleFallback();
+      }, 10600);
+    }
+    window.addEventListener('resize', this.onResize);
+    const self = this;
+    this.scrollHandler = function () {
+      if (self.ticking) return;
+      self.ticking = true;
+      requestAnimationFrame(function () {
+        try { self.applyScroll(); }
+        catch (err) { console.error('applyScroll error', err); }
+        finally { self.ticking = false; }
+      });
+    };
+    window.addEventListener('scroll', this.scrollHandler, { passive: true });
+    // rAF poll: scroll events never reach window/document in some embeddings.
+    this._lastY = null;
+    const pollTick = function () {
+      var y = window.scrollY || (document.scrollingElement ? document.scrollingElement.scrollTop : 0);
+      if (y !== self._lastY) { self._lastY = y; self.scrollHandler(); }
+      self._pollRaf = requestAnimationFrame(pollTick);
+    };
+    this._pollRaf = requestAnimationFrame(pollTick);
+
+    // Background panel clip: play through once, reveal the lines, then loop for good.
+    const sv = this.scrubRef.current;
+    if (sv) {
+      sv.muted = true;
+      sv.play().catch(function () {});
+      this.onScrubEnded = function () {
+        self.bgComplete = true;
+        sv.loop = true;
+        sv.currentTime = 0;
+        sv.play().catch(function () {});
+        self.applyScroll();
+      };
+      sv.addEventListener('ended', this.onScrubEnded);
+      this.resumeScrub = function () { if (sv.paused && !document.hidden) { sv.muted = true; sv.play().catch(function () {}); } };
+      document.addEventListener('visibilitychange', this.resumeScrub);
+      window.addEventListener('focus', this.resumeScrub);
+      // Heartbeat: keep the panel clip running no matter what (scroll, layout, etc.).
+      this.scrubHeartbeat = setInterval(this.resumeScrub, 400);
+    }
+
+    // Panel 3 background clip: play once, then loop; keep it alive during scroll.
+    const sv3 = this.scrub3Ref.current;
+    if (sv3) {
+      sv3.muted = true;
+      sv3.play().catch(function () {});
+      this.onScrub3Ended = function () {
+        self.bgComplete3 = true;
+        sv3.loop = true;
+        sv3.currentTime = 0;
+        sv3.play().catch(function () {});
+        self.applyScroll();
+      };
+      sv3.addEventListener('ended', this.onScrub3Ended);
+      this.resumeScrub3 = function () { if (sv3.paused && !document.hidden) { sv3.muted = true; sv3.play().catch(function () {}); } };
+      document.addEventListener('visibilitychange', this.resumeScrub3);
+      window.addEventListener('focus', this.resumeScrub3);
+      this.scrub3Heartbeat = setInterval(this.resumeScrub3, 400);
+    }
+
+    this.onResize();
+    this.applyScroll();
+  }
+
+  componentWillUnmount() {
+    if (this.scrubHeartbeat) clearInterval(this.scrubHeartbeat);
+    if (this.scrub3Heartbeat) clearInterval(this.scrub3Heartbeat);
+    if (this.revealTimer) clearTimeout(this.revealTimer);
+    if (this.videoRef.current) {
+      if (this.onEnded) this.videoRef.current.removeEventListener('ended', this.onEnded);
+      if (this.onMeta) this.videoRef.current.removeEventListener('loadedmetadata', this.onMeta);
+    }
+    if (this.resume) {
+      document.removeEventListener('visibilitychange', this.resume);
+      window.removeEventListener('scroll', this.resume);
+      window.removeEventListener('focus', this.resume);
+    }
+    if (this.io) this.io.disconnect();
+    if (this.scrollHandler) { window.removeEventListener('scroll', this.scrollHandler); document.removeEventListener('scroll', this.scrollHandler, { capture: true }); }
+    if (this._pollRaf) cancelAnimationFrame(this._pollRaf);
+    window.removeEventListener('resize', this.onResize);
+    if (this.rafRef) cancelAnimationFrame(this.rafRef);
+  }
+
+
+
+  onMove(e) {
+    this.mouse.x = e.clientX;
+    this.mouse.y = e.clientY;
+    if (this.rafRef == null) this.rafRef = requestAnimationFrame(this.loop);
+  }
+
+  onResize() {
+    this.applyScroll();
+  }
+
+  applyScroll() {
+    const driver = this.driverRef.current;
+    if (!driver) return;
+    const vh = window.innerHeight;
+    const rect = driver.getBoundingClientRect();
+    const range = driver.offsetHeight - vh;
+    const scrolled = Math.min(Math.max(-rect.top, 0), range);
+    const p = range > 0 ? scrolled / range : 0;
+
+    // Scroll timeline (fractions of total progress):
+    //  0.00–0.14  panel 1 rises      0.16–0.32  panel 1 drum
+    //  0.34–0.46  panel 2 rises      0.48–0.62  panel 2 drum
+    //  0.64–0.76  panel 3 rises      0.78–1.00  panel 3 drum
+    const setPanel = function (panel, prog) {
+      if (!panel) return;
+      panel.style.transform = 'translateY(' + ((1 - prog) * 100).toFixed(3) + '%)';
+      const radius = 48 - 24 * prog;
+      panel.style.borderTopLeftRadius = radius.toFixed(1) + 'px';
+      panel.style.borderTopRightRadius = radius.toFixed(1) + 'px';
+    };
+    const seg = function (a, b) { return Math.min(1, Math.max(0, (p - a) / (b - a))); };
+
+    // Panel 1
+    const pp = seg(0, 0.14);
+    setPanel(this.panelRef.current, pp);
+    const wrap = this.manifestoWrapRef.current;
+    if (wrap) wrap.style.opacity = (pp >= 0.98 && this.bgComplete) ? '1' : '0';
+    this.updateManifesto(this.manifestoRef.current, seg(0.16, 0.32));
+
+    // Panel 3 (content panel — now rises 3rd, on top of panel 1)
+    const pp3 = seg(0.34, 0.46);
+    setPanel(this.panel3Ref.current, pp3);
+    const wrap3 = this.manifesto3WrapRef.current;
+    if (wrap3) wrap3.style.opacity = (pp3 >= 0.98 && (this.bgComplete3 || !this.scrub3Ref.current || !this.scrub3Ref.current.currentSrc)) ? '1' : '0';
+    this.updateManifesto(this.manifesto3Ref.current, seg(0.48, 0.62));
+
+    // Panel 2 (blank panel — now rises last, on top of panel 3)
+    const pp2 = seg(0.64, 0.76);
+    setPanel(this.panel2Ref.current, pp2);
+    // Horizontal page slider: pages slide in from the side as the user scrolls.
+    const hp = seg(0.78, 1.0);
+    const track = this.hTrackRef.current;
+    if (track) {
+      const n = Math.max(1, track.children.length);
+      track.style.transform = 'translateX(' + (-(hp * (n - 1) * 100)).toFixed(3) + 'vw)';
+    }
+
+    // Only the clip whose panel is on screen decodes; the others pause (3 concurrent decodes stalls scroll).
+    const gate = function (sv, visible) {
+      if (!sv || !sv.currentSrc) return;
+      if (visible && !document.hidden) { if (sv.paused) { sv.muted = true; sv.play().catch(function () {}); } }
+      else if (!sv.paused) sv.pause();
+    };
+    if (this.heroStarted) gate(this.videoRef.current, pp < 0.99);
+    gate(this.scrubRef.current, pp > 0.02 && pp3 < 0.99);
+    gate(this.scrub3Ref.current, pp3 > 0.02 && pp2 < 0.99);
+    gate(this.scrub2Ref.current, pp2 > 0.02);
+  }
+
+  updateManifesto(stack, mp, noDepth) {
+    if (!stack) return;
+    const lines = stack.children;
+    const N = lines.length;
+    if (!N) return;
+    const focus = mp * (N - 1);
+    const win = stack.parentElement;
+    const winH = win ? win.clientHeight : window.innerHeight * 0.68;
+    for (let i = 0; i < N; i++) {
+      const el = lines[i];
+      el.style.transformOrigin = 'left center';
+      if (noDepth) {
+        el.style.opacity = '1';
+        el.style.filter = 'none';
+        el.style.color = '#ffffff';
+        continue;
+      }
+      const d = Math.abs(i - focus);
+      const op = Math.max(0.14, 1 - d * 0.3);
+      el.style.opacity = op.toFixed(3);
+    }
+    const i0 = Math.floor(focus);
+    const i1 = Math.min(N - 1, i0 + 1);
+    const f = focus - i0;
+    const c0 = lines[i0].offsetTop + lines[i0].offsetHeight / 2;
+    const c1 = lines[i1].offsetTop + lines[i1].offsetHeight / 2;
+    const center = c0 + (c1 - c0) * f;
+    stack.style.transform = 'translateY(' + (winH / 2 - center).toFixed(2) + 'px)';
+  }
+
+  loop() {
+    const dx = this.mouse.x - this.smooth.x, dy = this.mouse.y - this.smooth.y;
+    this.smooth.x += dx * 0.12;
+    this.smooth.y += dy * 0.12;
+    this.drawMask();
+    // idle when the pointer has settled; onMove restarts it
+    if (Math.abs(dx) < 0.4 && Math.abs(dy) < 0.4) { this.rafRef = null; return; }
+    this.rafRef = requestAnimationFrame(this.loop);
+  }
+
+  drawMask() {
+    const reveal = this.revealRef.current;
+    if (!reveal) return;
+    const R = this.SPOTLIGHT_R;
+    const m = 'radial-gradient(circle ' + R + 'px at ' + this.smooth.x.toFixed(1) + 'px ' + this.smooth.y.toFixed(1) + 'px, #000 0%, #000 40%, rgba(0,0,0,0.75) 60%, rgba(0,0,0,0.4) 75%, rgba(0,0,0,0.12) 88%, transparent 100%)';
+    reveal.style.maskImage = m;
+    reveal.style.webkitMaskImage = m;
+    reveal.style.maskRepeat = 'no-repeat';
+    reveal.style.webkitMaskRepeat = 'no-repeat';
+  }
+
+  componentWillUnmount() {
+    if (this.tgTimer) clearInterval(this.tgTimer);
+    if (this.introTimer) clearTimeout(this.introTimer);
+    if (this.rafRef) cancelAnimationFrame(this.rafRef);
+    if (this._pollRaf) cancelAnimationFrame(this._pollRaf);
+    if (this.scrollHandler) window.removeEventListener('scroll', this.scrollHandler);
+    if (this.onMove) window.removeEventListener('mousemove', this.onMove);
+    if (this.resume) { document.removeEventListener('visibilitychange', this.resume); window.removeEventListener('focus', this.resume); }
+  }
+
+  renderVals() {
+    const list = ['Impossible Before','Built Better','Beyond Protein','Better Results','Built Smart','One Community','Real Difference'];
+    if (!this.tgTimer) {
+      const self = this;
+      this.tgTimer = setInterval(function(){ self.setState(function(s){ return { tgIndex: s.tgIndex + 1 }; }); }, 3800);
+    }
+    const start = (this.state.tgIndex * 3) % list.length;
+    const lineStyle = {
+      display: 'block', whiteSpace: 'nowrap', color: '#ffffff',
+      fontFamily: "'PP Neue Montreal', 'Archivo', sans-serif", fontWeight: 600, textTransform: 'uppercase',
+      fontSize: 'clamp(58px, 8.4vw, 132px)', letterSpacing: '-0.06em', lineHeight: 1.0,
+      textShadow: '0 2px 30px rgba(0,0,0,0.5)'
+    };
+    const three = [0,1,2].map(function(k){ return list[(start + k) % list.length]; });
+    const taglineGroup = React.createElement('div', {
+      key: this.state.tgIndex,
+      style: { display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '18px' }
+    }, three.map(function(t, i){
+      return React.createElement('span', {
+        key: i, className: 'tg-line',
+        style: Object.assign({}, lineStyle, { animationDelay: (i * 0.18) + 's' })
+      }, t);
+    }));
+    return {
+      taglineGroup: taglineGroup,
+      introClass: this.state.introDone ? 'intro-over' : '',
+      canvasRef: this.canvasRef,
+      revealRef: this.revealRef,
+      videoRef: this.videoRef,
+      driverRef: this.driverRef,
+      panelRef: this.panelRef,
+      scrubRef: this.scrubRef,
+      manifestoRef: this.manifestoRef,
+      manifestoWrapRef: this.manifestoWrapRef,
+      panel2Ref: this.panel2Ref,
+      scrub2Ref: this.scrub2Ref,
+      manifesto2Ref: this.manifesto2Ref,
+      manifesto2WrapRef: this.manifesto2WrapRef,
+      hTrackRef: this.hTrackRef,
+      panel3Ref: this.panel3Ref,
+      scrub3Ref: this.scrub3Ref,
+      manifesto3Ref: this.manifesto3Ref,
+      manifesto3WrapRef: this.manifesto3WrapRef,
+      stageClass: this.state.revealed ? 'revealed' : 'pre-reveal',
+    };
+  }
+}
+</script>
+</body>
+</html>
